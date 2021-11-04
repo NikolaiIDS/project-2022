@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     void CalculateMovement()
     {
         crouch = anims.CrouchAnimation();
-        Debug.Log(crouch);
+        //Debug.Log(crouch);
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector3 velocity = direction * speed;
 
