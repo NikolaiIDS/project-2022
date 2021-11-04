@@ -56,31 +56,31 @@ public class Player : MonoBehaviour
         Vector3 velocityX2 = direction * (speed * 2);
         velocityX2.y -= gravity;
 
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift) && crouch == false)  
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift) && crouch == false)
         {
             velocity = velocityX2;
         }
 
-        if(checkG == true && crouch == false)
+        if (checkG == true && crouch == false)
         {
             isDoubleJumpActive = true;
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                directionY = jump;               
-            }           
+                directionY = jump;
+            }
         }
-        else 
+        else
         {
             if (Input.GetKeyDown(KeyCode.Space) && isDoubleJumpActive == true)
             {
-                directionY = jump*jumpMultiplier;
+                directionY = jump * jumpMultiplier;
                 isDoubleJumpActive = false;
             }
         }
 
         directionY -= Time.deltaTime * gravity;
         velocity.y = directionY;
-        
+
         velocity = transform.transform.TransformDirection(velocity);
         controller.Move(velocity * Time.deltaTime);
     }
