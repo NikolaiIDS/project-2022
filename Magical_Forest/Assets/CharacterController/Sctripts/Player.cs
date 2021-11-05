@@ -20,10 +20,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float jumpMultiplier = 2;
 
+    private float directionY;
     bool isDoubleJumpActive = false;
     bool checkG;
     bool crouch = false;
-    private float directionY;
+    
 
 
     // Start is called before the first frame update
@@ -49,8 +50,8 @@ public class Player : MonoBehaviour
         crouch = anims.CrouchAnimation();
         //Debug.Log(crouch);
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        Vector3 velocity = direction * speed;
 
+        Vector3 velocity = direction * speed;
         velocity.y -= gravity;
 
         Vector3 velocityX2 = direction * (speed * 2);
@@ -77,7 +78,7 @@ public class Player : MonoBehaviour
                 isDoubleJumpActive = false;
             }
         }
-
+        //directionY = jump;
         directionY -= Time.deltaTime * gravity;
         velocity.y = directionY;
 

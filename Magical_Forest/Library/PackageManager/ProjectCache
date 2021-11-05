@@ -5,27 +5,27 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637715370985327335
-    m_Hash: 4207262004
+      ticks: 637716954540454072
+    m_Hash: 650126938
   m_LockFileStatus:
     m_FilePath: D:/GitHub 4 game/GitHub 4 gem/Magical_Forest/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637715370985327335
-    m_Hash: 3875155053
+      ticks: 637716954540916704
+    m_Hash: 3921145879
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
   m_Packages:
     m_ResolvedPackages:
-    - packageId: com.unity.cinemachine@2.6.10
+    - packageId: com.unity.cinemachine@2.6.11
       testable: 0
       isDirectDependency: 1
-      version: 2.6.10
+      version: 2.6.11
       source: 1
-      resolvedPath: D:\GitHub 4 game\GitHub 4 gem\Magical_Forest\Library\PackageCache\com.unity.cinemachine@2.6.10
+      resolvedPath: D:\GitHub 4 game\GitHub 4 gem\Magical_Forest\Library\PackageCache\com.unity.cinemachine@2.6.11
       assetPath: Packages/com.unity.cinemachine
       name: com.unity.cinemachine
       displayName: Cinemachine
@@ -165,13 +165,13 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
-      datePublishedTicks: 637654219840000000
+      datePublishedTicks: 637715450880000000
       documentationUrl: 
       hasRepository: 1
       repository:
         type: git
-        url: git+https://github.com/Unity-Technologies/com.unity.cinemachine.git
-        revision: 21f619698ca31d69054e96556e03097e48e43c5d
+        url: https://github.com/Unity-Technologies/com.unity.cinemachine.git
+        revision: 0eef4802dbe9ea60fc58767471ce4c5ea86632de
         path: 
     - packageId: com.unity.collab-proxy@1.9.0
       testable: 0

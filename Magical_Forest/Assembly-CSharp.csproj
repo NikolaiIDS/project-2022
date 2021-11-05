@@ -67,6 +67,7 @@
     <Compile Include="Assets\CharacterController\Sctripts\LookXslow.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\CameraCon.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\LookYslow.cs" />
+    <Compile Include="Assets\CharacterController\Sctripts\ThirdPersonScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
