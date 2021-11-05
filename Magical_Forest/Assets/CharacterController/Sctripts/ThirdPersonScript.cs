@@ -32,7 +32,7 @@ public class ThirdPersonScript : MonoBehaviour
     void Update()
     {
         checkG = Physics.CheckSphere(GroundCheck.transform.position, 0.3f, lm);
-        Debug.Log(checkG);
+       // Debug.Log(checkG);
 
         CalculatingMovement();
     }
