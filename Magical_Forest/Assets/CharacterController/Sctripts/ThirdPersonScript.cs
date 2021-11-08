@@ -22,6 +22,7 @@ public class ThirdPersonScript : MonoBehaviour
     private float jumpMultiplier = 2;
     public float gravity = 9.81f;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,68 +40,57 @@ public class ThirdPersonScript : MonoBehaviour
 
 
     void CalculatingMovement()
-    {
-        float targetAngle;
-        float angle;
-        Vector3 moveDir = new Vector3();
+    {    
+        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
         Vector3 velocity = new Vector3();
-
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-
-        Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
-        
         velocity = direction;
-        
-        if (velocity.magnitude >= 0.1f)
+
+        if (Mathf.Sqrt(direction.x * direction.x + direction.z * direction.z) >= 0.1f) 
         {
-            targetAngle = Mathf.Atan2(velocity.x, velocity.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            if (checkG == true)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    isDoubleJumpActive = true;
-                    velocity = direction * speed;
-                    velocity.y -= gravity;
-
-                    directionY = jump;
-                    directionY -= Time.deltaTime * gravity;
-                    velocity.y = directionY;
-
-                    controller.Move(velocity *speed * Time.deltaTime);
-                }
-            }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.Space) && isDoubleJumpActive == true) 
-                {
-                    velocity = direction * speed;
-                    velocity.y -= gravity;
-
-                    directionY = jump*jumpMultiplier;
-                    isDoubleJumpActive = false;
-
-                    directionY -= Time.deltaTime * gravity;
-                    velocity.y = directionY;
-
-                    controller.Move(velocity * speed * Time.deltaTime);
-                }
-            }
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                controller.Move(moveDir.normalized * speed * 2 * Time.deltaTime);
+                controller.Move(moveDir * speed * 2 * Time.deltaTime);
             }
             else
             {
-                controller.Move(moveDir.normalized * speed * Time.deltaTime);
+                controller.Move(moveDir * speed * Time.deltaTime);
             }
         }
-        
 
+        /*direction = direction * speed;
+        direction.y -= gravity;
+        if (checkG == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //direction = direction * speed;
+                //direction.y -= gravity;
+
+                isDoubleJumpActive = true;                              
+                directionY = jump;
+                
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && isDoubleJumpActive == true)
+            {
+                //direction = direction * speed;
+                //direction.y -= gravity;
+
+                directionY = jump * jumpMultiplier;
+                isDoubleJumpActive = false;
+
+            }
+        }
+        directionY -= Time.deltaTime * gravity;
+        direction.y = directionY;
+        controller.Move(direction * Time.deltaTime);*/
     }
 }
