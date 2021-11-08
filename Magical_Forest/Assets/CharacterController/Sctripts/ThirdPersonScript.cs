@@ -6,6 +6,8 @@ public class ThirdPersonScript : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;
+    private AnimationPlayer anims;
+    bool crouch = false;
 
     public GameObject GroundCheck;
     bool checkG;
@@ -19,19 +21,24 @@ public class ThirdPersonScript : MonoBehaviour
     private float directionY;
     bool isDoubleJumpActive = false;
     public float jump = 5;
-    private float jumpMultiplier = 2;
+    private float jumpMultiplier = 1.5f;
     public float gravity = 9.81f;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        anims = GameObject.Find("PlayerAnim").GetComponent<AnimationPlayer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        GroundCheck = GameObject.Find("GroundCheck");
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         checkG = Physics.CheckSphere(GroundCheck.transform.position, 0.3f, lm);
        // Debug.Log(checkG);
 
@@ -40,57 +47,49 @@ public class ThirdPersonScript : MonoBehaviour
 
 
     void CalculatingMovement()
-    {    
+    {
+        crouch = anims.CrouchAnimation();
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+           
+        float yRotation = cam.transform.localEulerAngles.y + 180;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, yRotation, ref turnSmoothVelocity, turnSmoothTime);
 
-        Vector3 velocity = new Vector3();
-        velocity = direction;
-
-        if (Mathf.Sqrt(direction.x * direction.x + direction.z * direction.z) >= 0.1f) 
+        if (direction.magnitude >= 0.1f)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                controller.Move(moveDir * speed * 2 * Time.deltaTime);
-            }
-            else
-            {
-                controller.Move(moveDir * speed * Time.deltaTime);
-            }
         }
 
-        /*direction = direction * speed;
+        direction *= speed;
         direction.y -= gravity;
-        if (checkG == true)
+        
+        if (checkG == true && crouch == false)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                //direction = direction * speed;
-                //direction.y -= gravity;
-
                 isDoubleJumpActive = true;                              
-                directionY = jump;
-                
+                directionY = jump;                
             }
         }
         else
         {
             if (Input.GetKeyDown(KeyCode.Space) && isDoubleJumpActive == true)
             {
-                //direction = direction * speed;
-                //direction.y -= gravity;
-
                 directionY = jump * jumpMultiplier;
                 isDoubleJumpActive = false;
-
             }
         }
         directionY -= Time.deltaTime * gravity;
         direction.y = directionY;
-        controller.Move(direction * Time.deltaTime);*/
+
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false)
+        {
+            direction = transform.transform.TransformDirection(direction);
+            controller.Move(direction * 2 * Time.deltaTime);
+        }
+        else
+        {
+            direction = transform.transform.TransformDirection(direction);
+            controller.Move(direction * Time.deltaTime);
+        }
     }
 }

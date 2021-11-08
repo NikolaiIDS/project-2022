@@ -12,9 +12,9 @@ public class SlowTime : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown("1"))
         {
-            Debug.Log("pressed");
+            //Debug.Log("pressed");
             currTime = SlowiTime;
             Time.timeScale = SlowiTime;
             Particles.SetActive(true);
@@ -23,9 +23,9 @@ public class SlowTime : MonoBehaviour
        
 
 
-        if (Input.GetKeyUp(KeyCode.Mouse1))
+        if (Input.GetKeyUp("1"))
         {
-            Debug.Log("down");
+            //Debug.Log("down");
             Particles.SetActive(false);
             currTime = 1f;
             Time.timeScale = currTime;
