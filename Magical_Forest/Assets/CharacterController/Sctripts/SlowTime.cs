@@ -7,7 +7,12 @@ public class SlowTime : MonoBehaviour
     public float SlowiTime;
     public GameObject Particles;
     private float currTime = 1;
-    public Player player;
+   
+    public Animator Animator;
+    private void Start()
+    {
+        Animator = GameObject.Find("PlayerAnim").GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -18,7 +23,7 @@ public class SlowTime : MonoBehaviour
             currTime = SlowiTime;
             Time.timeScale = SlowiTime;
             Particles.SetActive(true);
-            player.GetComponent<Animator>().Play("Start");
+            Animator.GetComponent<Animator>().Play("Start");
         }
        
 
@@ -29,7 +34,7 @@ public class SlowTime : MonoBehaviour
             Particles.SetActive(false);
             currTime = 1f;
             Time.timeScale = currTime;
-            player.GetComponent<Animator>().Play("End");
+            Animator.GetComponent<Animator>().Play("End");
         }
 
     }
