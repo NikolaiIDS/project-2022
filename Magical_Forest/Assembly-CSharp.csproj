@@ -66,8 +66,9 @@
     <Compile Include="Assets\CharacterController\Sctripts\SlowTime.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\LookXslow.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\CameraCon.cs" />
-    <Compile Include="Assets\CharacterController\Sctripts\LookYslow.cs" />
     <Compile Include="Assets\IgniteCoders\Simple Water Shader\Resources\WaterReflection.cs" />
+    <Compile Include="Assets\CharacterController\Sctripts\LookYslow.cs" />
+    <Compile Include="Assets\CharacterController\Sctripts\AnimationStateController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

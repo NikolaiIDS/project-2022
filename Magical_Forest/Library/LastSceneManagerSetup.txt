@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/LowPolyDungeonsLite/Scenes/LowPolyDungeonsLite_Demo.unity
+- path: Assets/Scenes/controller/chaaracter.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
