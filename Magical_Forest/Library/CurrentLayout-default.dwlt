@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 1868
+  controlID: 62
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -102,7 +102,7 @@ MonoBehaviour:
   - {fileID: 22}
   - {fileID: 16}
   m_Selected: 2
-  m_LastSelected: 0
+  m_LastSelected: 1
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -124,10 +124,10 @@ MonoBehaviour:
     y: 0
     width: 823
     height: 947
-  m_MinSize: {x: 201, y: 442}
+  m_MinSize: {x: 201, y: 342}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 811
+  controlID: 2819
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: AnimatorControllerTool
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -147,15 +147,15 @@ MonoBehaviour:
     y: 0
     width: 823
     height: 444
-  m_MinSize: {x: 201, y: 221}
+  m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 18}
+  m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 20}
   - {fileID: 18}
   - {fileID: 15}
   - {fileID: 13}
-  m_Selected: 1
+  m_Selected: 3
   m_LastSelected: 1
 --- !u!114 &7
 MonoBehaviour:
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 126
+  controlID: 128
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -360,14 +360,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.6529767
+    - e00: 0.70886153
       e01: 0
       e02: 0
-      e03: -64.84211
+      e03: 63.797546
       e10: 0
-      e11: 0.6529767
+      e11: 0.70886153
       e12: 0
-      e13: 53.094173
+      e13: 101.16626
       e20: 0
       e21: 0
       e22: 1
@@ -408,14 +408,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.52842104
+    - e00: 0.5357895
       e01: 0
       e02: 0
-      e03: -11.421051
+      e03: -11.78949
       e10: 0
-      e11: 0.52842104
+      e11: 0.5357895
       e12: 0
-      e13: 118.02106
+      e13: 116.98947
       e20: 0
       e21: 0
       e22: 1
@@ -3088,9 +3088,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 7ecafeff
       m_LastClickedID: 0
-      m_ExpandedIDs: 06a8fdff32b8fdff30c5fdff247dffff287dffff2c7dffff307dffff347dffff387dffff3c7dffff407dffff0e84ffff7c92ffffa0d0ffff
+      m_ExpandedIDs: c0f9ffffa0faffff42fbffff46fbffff4cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -3150,9 +3150,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 18.47319, y: 4.102376, z: 35.532173}
+    m_Target: {x: 22.619925, y: -1.2336944, z: 38.616272}
     speed: 2
-    m_Value: {x: 18.47319, y: 4.102376, z: 35.532173}
+    m_Value: {x: 22.619925, y: -1.2336944, z: 38.616272}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -3199,13 +3199,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.048238683, y: -0.16109975, z: 0.007883698, w: 0.98572856}
+    m_Target: {x: -0.07432957, y: 0.0009049811, z: -0.000067396984, w: -0.9972354}
     speed: 2
-    m_Value: {x: 0.04823861, y: -0.1610995, z: 0.007883686, w: 0.985727}
+    m_Value: {x: -0.07432942, y: 0.00090497924, z: -0.000067396846, w: -0.9972334}
   m_Size:
-    m_Target: 9.711201
+    m_Target: 6.2372212
     speed: 2
-    m_Value: 9.711201
+    m_Value: 6.2372212
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -3325,22 +3325,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/CharacterController/Animatios/New
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets
+  - Assets/CharacterController/Animatios/New
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\GitHub 4 game\GitHub 4 gem\Magical_Forest
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 1a820000
-    m_LastClickedID: 33306
-    m_ExpandedIDs: 00000000a6810000a8810000aa810000ac810000ae810000b8810000ba810000bc8100001a8200009283000000ca9a3b
+    m_SelectedIDs: 74590000
+    m_LastClickedID: 22900
+    m_ExpandedIDs: 0000000066590000685900006c5900006e590000705900007259000074590000945a0000165b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -3368,7 +3368,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a6810000a8810000aa810000ac810000ae810000b0810000b2810000b4810000b6810000b8810000ba810000bc810000
+    m_ExpandedIDs: 000000006459000066590000685900006a5900006c5900006e590000705900007259000074590000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -3395,22 +3395,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c6230000b0d60000
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c6230000b0d6000020770000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Simple Water Shader
-      m_OriginalName: Simple Water Shader
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 33210
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
@@ -3423,7 +3423,7 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 206
+  m_DirectoriesAreaWidth: 218
 --- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52

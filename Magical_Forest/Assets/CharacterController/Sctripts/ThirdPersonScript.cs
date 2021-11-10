@@ -6,6 +6,7 @@ public class ThirdPersonScript : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;
+    private AnimController anims;
 
     public GameObject GroundCheck;
     bool checkG;
@@ -22,11 +23,12 @@ public class ThirdPersonScript : MonoBehaviour
     private float jumpMultiplier = 1.5f;
     public float gravity = 9.81f;
 
+    bool crouch;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        anims = GetComponent<AnimController>();
     }
 
     // Update is called once per frame
@@ -46,6 +48,8 @@ public class ThirdPersonScript : MonoBehaviour
 
     void CalculatingMovement()
     {
+        crouch = anims.CrouchIsEnabled();
+
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
            
         float yRotation = cam.transform.localEulerAngles.y + 180;
@@ -59,7 +63,7 @@ public class ThirdPersonScript : MonoBehaviour
         direction *= speed;
         direction.y -= gravity;
         
-        if (checkG == true)
+        if (checkG == true && crouch == false)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -69,7 +73,7 @@ public class ThirdPersonScript : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space) && isDoubleJumpActive == true)
+            if (Input.GetKeyDown(KeyCode.Space) && isDoubleJumpActive == true && crouch == false)
             {
                 directionY = jump * jumpMultiplier;
                 isDoubleJumpActive = false;
@@ -78,7 +82,7 @@ public class ThirdPersonScript : MonoBehaviour
         directionY -= Time.deltaTime * gravity;
         direction.y = directionY;
 
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false) 
         {
             direction = transform.transform.TransformDirection(direction);
             controller.Move(direction * 2.5f * Time.deltaTime);

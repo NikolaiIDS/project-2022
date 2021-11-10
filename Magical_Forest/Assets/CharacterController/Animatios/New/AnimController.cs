@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimController : MonoBehaviour
 {
     private Animator animator;
+    bool _crouch = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +15,7 @@ public class AnimController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && animator.GetBool("isCrouchW")==false)
         {
             animator.SetBool("isWalking", true);
         }
@@ -54,17 +55,39 @@ public class AnimController : MonoBehaviour
         {
             animator.SetBool("isRunning", false);
         }
-
-
+        /*if ((!Input.GetKey(KeyCode.W) || !Input.GetKey(KeyCode.S) || !Input.GetKey(KeyCode.D) || !Input.GetKey(KeyCode.A)) && Input.GetKey(KeyCode.LeftControl))
+        {
+            animator.SetBool("isCWfromW", false);
+        }*/        
+        CrouchIsEnabled();
+    }
+    public bool CrouchIsEnabled()
+    {
         if (Input.GetKey(KeyCode.LeftControl))
         {
             animator.SetBool("IsCrouching", true);
+            _crouch = true;
         }
-        else animator.SetBool("IsCrouching", false);
-
-        if ((!Input.GetKey(KeyCode.W) || !Input.GetKey(KeyCode.S) || !Input.GetKey(KeyCode.D) || !Input.GetKey(KeyCode.A)) && Input.GetKey(KeyCode.LeftControl))
+        else
         {
-            animator.SetBool("isCWfromW", false);
+            animator.SetBool("IsCrouching", false);
+            _crouch = false;
         }
+        if (animator.GetBool("IsCrouching") == true && Input.GetKey(KeyCode.W))
+        {
+            animator.SetBool("isCrouchW", true);
+            _crouch = true;
+        }
+        else if(animator.GetBool("IsCrouching") == true && !(Input.GetKey(KeyCode.W)))
+        {
+            animator.SetBool("isCrouchW", false);
+            _crouch = true;
+        }
+        /*if (animator.GetBool("IsCrouching") == false && !(Input.GetKey(KeyCode.W)))
+        {
+            animator.SetBool("isCrouchW", false);
+            _crouch = true;
+        }*/
+        return _crouch;
     }
 }
