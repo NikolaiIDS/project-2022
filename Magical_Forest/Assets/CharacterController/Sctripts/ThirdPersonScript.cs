@@ -6,8 +6,6 @@ public class ThirdPersonScript : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;
-    private AnimationPlayer anims;
-    bool crouch = false;
 
     public GameObject GroundCheck;
     bool checkG;
@@ -28,7 +26,7 @@ public class ThirdPersonScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anims = GameObject.Find("PlayerAnim").GetComponent<AnimationPlayer>();
+        
     }
 
     // Update is called once per frame
@@ -40,7 +38,7 @@ public class ThirdPersonScript : MonoBehaviour
         Cursor.visible = false;
 
         checkG = Physics.CheckSphere(GroundCheck.transform.position, 0.3f, lm);
-       // Debug.Log(checkG);
+        Debug.Log(checkG);
 
         CalculatingMovement();
     }
@@ -48,8 +46,7 @@ public class ThirdPersonScript : MonoBehaviour
 
     void CalculatingMovement()
     {
-        crouch = anims.CrouchAnimation();
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
            
         float yRotation = cam.transform.localEulerAngles.y + 180;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, yRotation, ref turnSmoothVelocity, turnSmoothTime);
@@ -62,7 +59,7 @@ public class ThirdPersonScript : MonoBehaviour
         direction *= speed;
         direction.y -= gravity;
         
-        if (checkG == true && crouch == false)
+        if (checkG == true)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -81,10 +78,10 @@ public class ThirdPersonScript : MonoBehaviour
         directionY -= Time.deltaTime * gravity;
         direction.y = directionY;
 
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false)
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
         {
             direction = transform.transform.TransformDirection(direction);
-            controller.Move(direction * 2 * Time.deltaTime);
+            controller.Move(direction * 2.5f * Time.deltaTime);
         }
         else
         {
