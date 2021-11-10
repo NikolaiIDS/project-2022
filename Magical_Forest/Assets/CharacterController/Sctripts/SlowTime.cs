@@ -11,7 +11,7 @@ public class SlowTime : MonoBehaviour
     public Animator Animator;
     private void Start()
     {
-        Animator = GameObject.Find("PlayerAnim").GetComponent<Animator>();
+        Animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -19,7 +19,7 @@ public class SlowTime : MonoBehaviour
 
         if (Input.GetKeyDown("1"))
         {
-            //Debug.Log("pressed");
+            Debug.Log("pressed");
             currTime = SlowiTime;
             Time.timeScale = SlowiTime;
             Particles.SetActive(true);
@@ -30,7 +30,7 @@ public class SlowTime : MonoBehaviour
 
         if (Input.GetKeyUp("1"))
         {
-            //Debug.Log("down");
+            Debug.Log("down");
             Particles.SetActive(false);
             currTime = 1f;
             Time.timeScale = currTime;

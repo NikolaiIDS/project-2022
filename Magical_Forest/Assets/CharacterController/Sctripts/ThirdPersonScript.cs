@@ -6,7 +6,7 @@ public class ThirdPersonScript : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;
-    private AnimController anims;
+    private AnimationStateController anims;
 
     public GameObject GroundCheck;
     bool checkG;
@@ -28,7 +28,7 @@ public class ThirdPersonScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anims = GetComponent<AnimController>();
+        anims = GetComponent<AnimationStateController>();
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class ThirdPersonScript : MonoBehaviour
         Cursor.visible = false;
 
         checkG = Physics.CheckSphere(GroundCheck.transform.position, 0.3f, lm);
-        Debug.Log(checkG);
+        //Debug.Log(checkG);
 
         CalculatingMovement();
     }

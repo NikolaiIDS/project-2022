@@ -9,6 +9,7 @@ public class AnimationStateController : MonoBehaviour
     int isRunningHash;
     int isCrouching;
     int isCrouchW;
+    bool _crouch = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,18 +18,18 @@ public class AnimationStateController : MonoBehaviour
         isRunningHash = Animator.StringToHash("isRunning");
         isCrouching = Animator.StringToHash("isCrouching");
         isCrouchW = Animator.StringToHash("isCrouchW");
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool shiftPressed = Input.GetKey(KeyCode.LeftShift);       
+        bool shiftPressed = Input.GetKey(KeyCode.LeftShift);
         bool isWalking = animator.GetBool(isWalkingHash);
         bool isRunning = animator.GetBool(isRunningHash);
         bool isCrouched = Input.GetKeyDown(KeyCode.LeftControl);
         bool isCrouchWalking = animator.GetBool(isCrouchW);
-        
+
         if ((!Input.GetKey(KeyCode.W) || !Input.GetKey(KeyCode.S) || !Input.GetKey(KeyCode.D) || !Input.GetKey(KeyCode.A)) && Input.GetKey(KeyCode.LeftControl))
         {
             animator.SetBool("isCWfromW", false);
@@ -41,25 +42,56 @@ public class AnimationStateController : MonoBehaviour
         {
             animator.SetBool("isJumping", false);
         }
-        if (Input.GetKey(KeyCode.W)|| Input.GetKey(KeyCode.S)|| Input.GetKey(KeyCode.D)|| Input.GetKey(KeyCode.A) && !isWalking)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) && !isWalking)
         {
             animator.SetBool(isWalkingHash, true);
             if (Input.GetKey(KeyCode.LeftControl))
             {
-              animator.SetBool("isCWfromW", true); 
+                animator.SetBool("isCWfromW", true);
             }
             if (!Input.GetKey(KeyCode.LeftControl))
             {
                 animator.SetBool("isCWfromW", false);
             }
         }
-        if (!(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
+
+        if (Input.GetKey(KeyCode.W) && animator.GetBool("isCrouchW") == false)
         {
-            animator.SetBool(isWalkingHash, false);           
+            animator.SetBool("isWalking", true);
         }
-        if ( shiftPressed && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
+        else animator.SetBool("isWalking", false);
+
+        if (Input.GetKey(KeyCode.A))
         {
-            animator.SetBool(isRunningHash, true);
+            animator.SetBool("walkLeft", true);
+        }
+        else animator.SetBool("walkLeft", false);
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            animator.SetBool("walkRight", true);
+        }
+        else animator.SetBool("walkRight", false);
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            animator.SetBool("walkBackward", true);
+        }
+        else animator.SetBool("walkBackward", false);
+
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+        {
+            animator.SetBool("diagonal", true);
+        }
+        else animator.SetBool("diagonal", false);
+
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.LeftControl))
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else if (Input.GetKey(KeyCode.LeftShift) != true || Input.GetKey(KeyCode.W) != true)
+        {
+            animator.SetBool("isRunning", false);
         }
         if (isRunning && (!shiftPressed || !(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))))
         {
@@ -75,13 +107,13 @@ public class AnimationStateController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            animator.SetBool("IsCrouching", true); 
+            animator.SetBool("IsCrouching", true);
         }
-        if (animator.GetBool("IsCrouching" )==true && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
+        if (animator.GetBool("IsCrouching") == true && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
         {
             animator.SetBool("isCrouchW", true);
         }
-        if (animator.GetBool("IsCrouching") ==false|| !(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
+        if (animator.GetBool("IsCrouching") == false || !(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
         {
             animator.SetBool("isCrouchW", false);
         }
@@ -89,7 +121,7 @@ public class AnimationStateController : MonoBehaviour
         {
             animator.SetBool("IsCrouching", false);
         }
-        if (animator.GetBool("IsCrouching")==true && animator.GetBool("isCrouchW")==false)
+        if (animator.GetBool("IsCrouching") == true && animator.GetBool("isCrouchW") == false)
         {
             animator.SetBool("fromCtoCI", true);
         }
@@ -98,10 +130,38 @@ public class AnimationStateController : MonoBehaviour
             animator.SetBool("fromCtoCI", false);
         }
 
-
+        CrouchIsEnabled();
     }
-        
+    public bool CrouchIsEnabled()
+    {
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            animator.SetBool("IsCrouching", true);
+            _crouch = true;
+        }
+        else
+        {
+            animator.SetBool("IsCrouching", false);
+            _crouch = false;
+        }
+        if (animator.GetBool("IsCrouching") == true && Input.GetKey(KeyCode.W))
+        {
+            animator.SetBool("isCrouchW", true);
+            _crouch = true;
+        }
+        else if (animator.GetBool("IsCrouching") == true && !(Input.GetKey(KeyCode.W)))
+        {
+            animator.SetBool("isCrouchW", false);
+            _crouch = true;
+        }
+        /*if (animator.GetBool("IsCrouching") == false && !(Input.GetKey(KeyCode.W)))
+        {
+            animator.SetBool("isCrouchW", false);
+            _crouch = true;
+        }*/
+        return _crouch;
+    }
 
-       
-    
+
+
 }
