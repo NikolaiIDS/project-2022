@@ -30,10 +30,17 @@ public class AnimationStateController : MonoBehaviour
         bool isCrouched = Input.GetKeyDown(KeyCode.LeftControl);
         bool isCrouchWalking = animator.GetBool(isCrouchW);
 
-        if ((!Input.GetKey(KeyCode.W) || !Input.GetKey(KeyCode.S) || !Input.GetKey(KeyCode.D) || !Input.GetKey(KeyCode.A)) && Input.GetKey(KeyCode.LeftControl))
+        /*if ((!Input.GetKey(KeyCode.W) || !Input.GetKey(KeyCode.S) || !Input.GetKey(KeyCode.D) || !Input.GetKey(KeyCode.A)) && Input.GetKey(KeyCode.LeftControl))
+        {
+            animator.SetBool("isCWfromW", false);
+        }*/
+
+        // Crouch walking Forward
+        if (!Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftControl))
         {
             animator.SetBool("isCWfromW", false);
         }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             animator.SetBool("isJumping", true);
@@ -42,6 +49,8 @@ public class AnimationStateController : MonoBehaviour
         {
             animator.SetBool("isJumping", false);
         }
+
+
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) && !isWalking)
         {
             animator.SetBool(isWalkingHash, true);
@@ -55,44 +64,53 @@ public class AnimationStateController : MonoBehaviour
             }
         }
 
+        // Standing walking Forward
         if (Input.GetKey(KeyCode.W) && animator.GetBool("isCrouchW") == false)
         {
             animator.SetBool("isWalking", true);
         }
         else animator.SetBool("isWalking", false);
 
+        // Standing walking Left
         if (Input.GetKey(KeyCode.A))
         {
             animator.SetBool("walkLeft", true);
         }
         else animator.SetBool("walkLeft", false);
 
+        // Standing walking Right
         if (Input.GetKey(KeyCode.D))
         {
             animator.SetBool("walkRight", true);
         }
         else animator.SetBool("walkRight", false);
 
+        // Standing walking Backward
         if (Input.GetKey(KeyCode.S))
         {
             animator.SetBool("walkBackward", true);
         }
         else animator.SetBool("walkBackward", false);
-
+         
+        // Move Diagonally Standing with Forward
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
             animator.SetBool("diagonal", true);
         }
         else animator.SetBool("diagonal", false);
 
+        // Sprint while holding Forward and Crouch=FALSE
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.LeftControl))
         {
             animator.SetBool("isRunning", true);
         }
+        // No spring while Shift=FALSE and Forward=FALSE
         else if (Input.GetKey(KeyCode.LeftShift) != true || Input.GetKey(KeyCode.W) != true)
         {
             animator.SetBool("isRunning", false);
         }
+
+        // 
         if (isRunning && (!shiftPressed || !(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))))
         {
             animator.SetBool(isRunningHash, false);
