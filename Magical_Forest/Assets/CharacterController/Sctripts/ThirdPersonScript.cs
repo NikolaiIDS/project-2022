@@ -51,8 +51,8 @@ public class ThirdPersonScript : MonoBehaviour
         crouch = anims.CrouchIsEnabled();
 
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
-           
-        float yRotation = cam.transform.localEulerAngles.y + 180;
+
+        float yRotation = cam.transform.localEulerAngles.y;//+ 180;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, yRotation, ref turnSmoothVelocity, turnSmoothTime);
 
         if (direction.magnitude >= 0.1f)
@@ -62,13 +62,14 @@ public class ThirdPersonScript : MonoBehaviour
 
         direction *= speed;
         direction.y -= gravity;
-        
+
         if (checkG == true && crouch == false)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                isDoubleJumpActive = true;                              
-                directionY = jump;                
+                isDoubleJumpActive = true;
+                directionY = jump;
+
             }
         }
         else
@@ -79,10 +80,14 @@ public class ThirdPersonScript : MonoBehaviour
                 isDoubleJumpActive = false;
             }
         }
+
+        GCheck();
+        DoubleJump();
+
         directionY -= Time.deltaTime * gravity;
         direction.y = directionY;
 
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false) 
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false)
         {
             direction = transform.transform.TransformDirection(direction);
             controller.Move(direction * 2.5f * Time.deltaTime);
@@ -92,5 +97,14 @@ public class ThirdPersonScript : MonoBehaviour
             direction = transform.transform.TransformDirection(direction);
             controller.Move(direction * Time.deltaTime);
         }
+    }
+    public bool GCheck()
+    {
+        return checkG;
+    }
+
+    public bool DoubleJump()
+    {
+        return isDoubleJumpActive;
     }
 }

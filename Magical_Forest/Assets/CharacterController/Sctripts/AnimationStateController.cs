@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class AnimationStateController : MonoBehaviour
 {
+    public ThirdPersonScript tps;
+    bool groundCheck;
+    bool doubleJump;
+
     Animator animator;
     int isWalkingHash;
     int isRunningHash;
@@ -24,6 +28,9 @@ public class AnimationStateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        groundCheck = tps.GCheck();
+        doubleJump = tps.DoubleJump();
+
         bool shiftPressed = Input.GetKey(KeyCode.LeftShift);
         bool isWalking = animator.GetBool(isWalkingHash);
         bool isRunning = animator.GetBool(isRunningHash);
@@ -49,6 +56,32 @@ public class AnimationStateController : MonoBehaviour
         {
             animator.SetBool("isJumping", false);
         }
+
+        if (doubleJump == true)
+        {
+            animator.SetBool("djActive", true);
+        }
+        
+        if (groundCheck == false && doubleJump == true && Input.GetKeyDown(KeyCode.Space)) 
+        {
+            animator.SetBool("doubleJump", true);
+        }
+        if (doubleJump == false)
+        {
+            animator.SetBool("doubleJump", false);
+            animator.SetBool("djActive", false);
+        }
+
+        if (groundCheck == true)
+        {
+            animator.SetBool("isGrounded", true);
+        }
+        if (groundCheck == false)
+        {
+            animator.SetBool("isGrounded", false);
+        }
+
+
 
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) && !isWalking)
