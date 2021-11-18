@@ -6,7 +6,7 @@ public class AnimationStateController : MonoBehaviour
 {
     public ThirdPersonScript tps;
     bool groundCheck;
-    bool doubleJump;
+    bool doubleJump = false;
 
     Animator animator;
     int isWalkingHash;
@@ -29,7 +29,7 @@ public class AnimationStateController : MonoBehaviour
     void Update()
     {
         groundCheck = tps.GCheck();
-        doubleJump = tps.DoubleJump();
+        //doubleJump = tps.DoubleJump();
 
         bool shiftPressed = Input.GetKey(KeyCode.LeftShift);
         bool isWalking = animator.GetBool(isWalkingHash);
@@ -51,37 +51,36 @@ public class AnimationStateController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             animator.SetBool("isJumping", true);
+            
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
             animator.SetBool("isJumping", false);
-        }
+            doubleJump = true;
+            
 
-        if (doubleJump == true)
-        {
-            animator.SetBool("djActive", true);
-        }
-        
-        if (groundCheck == false && doubleJump == true && Input.GetKeyDown(KeyCode.Space)) 
-        {
-            animator.SetBool("doubleJump", true);
-        }
-        if (doubleJump == false)
-        {
-            animator.SetBool("doubleJump", false);
-            animator.SetBool("djActive", false);
         }
 
         if (groundCheck == true)
         {
             animator.SetBool("isGrounded", true);
         }
-        if (groundCheck == false)
+        else
         {
-            animator.SetBool("isGrounded", false);
+            animator.SetBool("isGrounded", false); 
+            animator.SetBool("doubleJump", false);
         }
 
+        if (doubleJump == true && Input.GetKeyDown(KeyCode.Space) && groundCheck == false)
+        {
+            animator.SetBool("doubleJump", true);
+            doubleJump = false;            
+        }
 
+        /*if (doubleJump == false && Input.GetKeyUp(KeyCode.Space))
+        {
+            animator.SetBool("doubleJump", false);
+        }*/
 
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) && !isWalking)

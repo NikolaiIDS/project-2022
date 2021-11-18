@@ -20,7 +20,7 @@ public class ThirdPersonScript : MonoBehaviour
     private float directionY;
     bool isDoubleJumpActive = false;
     public float jump = 5;
-    private float jumpMultiplier = 1.5f;
+    private float jumpMultiplier = 2f;
     public float gravity = 9.81f;
 
     bool crouch;
@@ -48,6 +48,7 @@ public class ThirdPersonScript : MonoBehaviour
 
     void CalculatingMovement()
     {
+        
         crouch = anims.CrouchIsEnabled();
 
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
@@ -61,7 +62,7 @@ public class ThirdPersonScript : MonoBehaviour
         }
 
         direction *= speed;
-        direction.y -= gravity;
+        direction.y -= gravity;        
 
         if (checkG == true && crouch == false)
         {
@@ -69,23 +70,21 @@ public class ThirdPersonScript : MonoBehaviour
             {
                 isDoubleJumpActive = true;
                 directionY = jump;
-
             }
         }
         else
         {
             if (Input.GetKeyDown(KeyCode.Space) && isDoubleJumpActive == true && crouch == false)
             {
-                directionY = jump * jumpMultiplier;
+                directionY = jump * jumpMultiplier;                
                 isDoubleJumpActive = false;
             }
         }
+        directionY -= Time.deltaTime * gravity;
+        direction.y = directionY;
 
         GCheck();
         DoubleJump();
-
-        directionY -= Time.deltaTime * gravity;
-        direction.y = directionY;
 
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false)
         {
