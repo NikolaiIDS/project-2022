@@ -143,7 +143,7 @@ public class AnimationStateController : MonoBehaviour
         }
 
         // 
-        if (isRunning && (!shiftPressed || !(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))))
+        if (isRunning && (!shiftPressed || !(Input.GetKey(KeyCode.W) /*|| Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)*/)))
         {
             animator.SetBool(isRunningHash, false);
             if (Input.GetKey(KeyCode.LeftControl))
@@ -247,7 +247,5 @@ public class AnimationStateController : MonoBehaviour
         }*/
         return _crouch;
     }
-
-
 
 }
