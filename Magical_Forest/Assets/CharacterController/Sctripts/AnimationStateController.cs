@@ -190,18 +190,54 @@ public class AnimationStateController : MonoBehaviour
             _crouch = true;
         }
         else
+        
         {
             animator.SetBool("IsCrouching", false);
             _crouch = false;
         }
+        //Crouch W
         if (animator.GetBool("IsCrouching") == true && Input.GetKey(KeyCode.W))
         {
             animator.SetBool("isCrouchW", true);
             _crouch = true;
         }
+        
         else if (animator.GetBool("IsCrouching") == true && !(Input.GetKey(KeyCode.W)))
         {
             animator.SetBool("isCrouchW", false);
+            _crouch = true;
+        }
+        //Crouch A
+        if (animator.GetBool("IsCrouching") == true && Input.GetKey(KeyCode.A))
+        {
+            animator.SetBool("isCrouchA", true);
+            _crouch = true;
+        }
+        else if (animator.GetBool("IsCrouching") == true && !(Input.GetKey(KeyCode.A)))
+        {
+            animator.SetBool("isCrouchA", false);
+            _crouch = true;
+        }
+        //Crouch S
+        if (animator.GetBool("IsCrouching") == true && Input.GetKey(KeyCode.S))
+        {
+            animator.SetBool("isCrouchS", true);
+            _crouch = true;
+        }
+        else if (animator.GetBool("IsCrouching") == true && !(Input.GetKey(KeyCode.S)))
+        {
+            animator.SetBool("isCrouchS", false);
+            _crouch = true;
+        }
+        //Crouch D
+        if (animator.GetBool("IsCrouching") == true && Input.GetKey(KeyCode.D))
+        {
+            animator.SetBool("isCrouchD", true);
+            _crouch = true;
+        }
+        else if (animator.GetBool("IsCrouching") == true && !(Input.GetKey(KeyCode.D)))
+        {
+            animator.SetBool("isCrouchD", false);
             _crouch = true;
         }
         /*if (animator.GetBool("IsCrouching") == false && !(Input.GetKey(KeyCode.W)))
