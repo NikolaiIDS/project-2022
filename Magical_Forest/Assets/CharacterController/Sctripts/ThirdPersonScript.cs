@@ -60,10 +60,11 @@ public class ThirdPersonScript : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
-
+        if (direction.y-gravity >= 0)
+        {
+            direction.y -= gravity;
+        }
         
-        direction.y -= gravity;        
-
         if (checkG == true && crouch == false)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -82,7 +83,7 @@ public class ThirdPersonScript : MonoBehaviour
         }
         directionY -= Time.deltaTime * gravity;
         direction.y = directionY;
-        
+
         GCheck();
         DoubleJump();
 
