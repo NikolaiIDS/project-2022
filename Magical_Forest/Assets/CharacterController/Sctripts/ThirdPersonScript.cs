@@ -61,7 +61,7 @@ public class ThirdPersonScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
 
-        direction *= speed;
+        
         direction.y -= gravity;        
 
         if (checkG == true && crouch == false)
@@ -82,17 +82,21 @@ public class ThirdPersonScript : MonoBehaviour
         }
         directionY -= Time.deltaTime * gravity;
         direction.y = directionY;
-
+        
         GCheck();
         DoubleJump();
 
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false)
         {
+            direction.x *= speed*2.5f;
+            direction.y *= speed;
+            direction.z *= speed * 2.5f;
             direction = transform.transform.TransformDirection(direction);
-            controller.Move(direction * 2.5f * Time.deltaTime);
+            controller.Move(direction * Time.deltaTime);
         }
         else
         {
+            direction *= speed;
             direction = transform.transform.TransformDirection(direction);
             controller.Move(direction * Time.deltaTime);
         }
