@@ -8,6 +8,10 @@ public class ThirdPersonScript : MonoBehaviour
     public Transform cam;
     private AnimationStateController anims;
 
+    public GameObject cinemachine;
+    public GameObject cmAimed;
+    private bool isAimed = false;
+
     public GameObject GroundCheck;
     bool checkG;
     public LayerMask lm;
@@ -29,6 +33,8 @@ public class ThirdPersonScript : MonoBehaviour
     void Start()
     {
         anims = GetComponent<AnimationStateController>();
+        //cinemachine = GameObject.Find("CM1");
+        //cmAimed = GameObject.Find("CM2");
     }
 
     // Update is called once per frame
@@ -44,8 +50,6 @@ public class ThirdPersonScript : MonoBehaviour
 
         CalculatingMovement();
     }
-
-
     void CalculatingMovement()
     {
         
@@ -59,6 +63,10 @@ public class ThirdPersonScript : MonoBehaviour
         if (direction.magnitude >= 0.1f)
         {
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        }
+        if (isAimed == true)
+        {
+            transform.rotation = Quaternion.Euler(0f, yRotation, 0);
         }
         if (direction.y-gravity >= 0)
         {
@@ -87,6 +95,19 @@ public class ThirdPersonScript : MonoBehaviour
         GCheck();
         DoubleJump();
 
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            isAimed = true;
+            cinemachine.SetActive(false);
+            cmAimed.SetActive(true);
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            isAimed = false;
+            cinemachine.SetActive(true);
+            cmAimed.SetActive(false);
+        }
+
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false)
         {
             direction.x *= speed*2.5f;
@@ -111,4 +132,10 @@ public class ThirdPersonScript : MonoBehaviour
     {
         return isDoubleJumpActive;
     }
+
+    private void Aiming()
+    {
+
+    }
 }
+
