@@ -1,0 +1,2 @@
+C:\Users\ASUS\Documents\GitHub\project-2022\Magical_Forest\obj\Debug\Assembly-CSharp.csproj.AssemblyReference.cache
+C:\Users\ASUS\Documents\GitHub\project-2022\Magical_Forest\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

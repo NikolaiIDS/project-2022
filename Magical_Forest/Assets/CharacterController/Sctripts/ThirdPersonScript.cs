@@ -9,7 +9,9 @@ public class ThirdPersonScript : MonoBehaviour
     private AnimationStateController anims;
 
     public GameObject cinemachine;
+    private float _cinemachineTransformPosY;
     public GameObject cmAimed;
+    private float _cmAimedTransformY;
     private bool isAimed = false;
 
     public GameObject GroundCheck;
@@ -40,6 +42,8 @@ public class ThirdPersonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _cinemachineTransformPosY = cinemachine.transform.position.y;
+        _cmAimedTransformY = cmAimed.transform.position.y;
         GroundCheck = GameObject.Find("GroundCheck");
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -97,18 +101,21 @@ public class ThirdPersonScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
+            
             isAimed = true;
             cinemachine.SetActive(false);
             cmAimed.SetActive(true);
         }
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
+           
             isAimed = false;
             cinemachine.SetActive(true);
             cmAimed.SetActive(false);
+            //transform.rotation = Quaternion.Euler(0f, yRotation, 0);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false)
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false && isAimed==false)
         {
             direction.x *= speed*2.5f;
             direction.y *= speed;
