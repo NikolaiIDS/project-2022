@@ -64,19 +64,23 @@ public class ThirdPersonScript : MonoBehaviour
         float yRotation = cam.transform.localEulerAngles.y;//+ 180;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, yRotation, ref turnSmoothVelocity, turnSmoothTime);
 
-        if (direction.magnitude >= 0.1f)
+        if (direction.magnitude >= 0.1f && isAimed == false)
         {
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
+
         if (isAimed == true)
         {
             transform.rotation = Quaternion.Euler(0f, yRotation, 0);
         }
-        if (direction.y-gravity >= 0)
+
+        direction.y -= gravity;
+        /*if (isDoubleJumpActive == false)
         {
             direction.y -= gravity;
-        }
-        
+        }*/
+
+
         if (checkG == true && crouch == false)
         {
             if (Input.GetKeyDown(KeyCode.Space))
