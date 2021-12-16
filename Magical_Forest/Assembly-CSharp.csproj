@@ -58,6 +58,7 @@
     <Compile Include="Assets\SampleSceneAssets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\LookY.cs" />
     <Compile Include="Assets\SampleSceneAssets\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\FireballSccript.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\AnimationStateController.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\ThirdPersonScript.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\LookX.cs" />
@@ -67,11 +68,13 @@
     <Compile Include="Assets\CharacterController\Sctripts\SlowTime.cs" />
     <Compile Include="Assets\CharacterController\Animatios\New\AnimController.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\LookXslow.cs" />
+    <Compile Include="Assets\CharacterController\Sctripts\MagicAbilitiesScript.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\CameraCon.cs" />
     <Compile Include="Assets\IgniteCoders\Simple Water Shader\Resources\WaterReflection.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\LookYslow.cs" />
-    <Compile Include="Assets\CharacterController\Sctripts\MagicAbilitiesScript.cs" />
-    <Compile Include="Assets\FireballSccript.cs" />
+    <Compile Include="Assets\TreesTool-master\TreesTool-master\Trees_Tool_Inspector.cs" />
+    <Compile Include="Assets\TreesTool-master\TreesTool-master\Trees_Tool.cs" />
+    <Compile Include="Assets\TreesTool-master\TreesTool-master\TextureScale.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Samples\Terrain Tools\0.1.0-preview\Terrain Assets\ThirdPartyNotices.txt" />
@@ -718,6 +721,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="sc.vegetationspawner.editor.csproj">
+      <Project>{1319E276-DF69-15C6-31D3-E776411E3114}</Project>
+      <Name>sc.vegetationspawner.editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="sc.vegetationspawner.runtime.csproj">
+      <Project>{2866BB35-D197-0E32-B39F-8A7365C666FA}</Project>
+      <Name>sc.vegetationspawner.runtime</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
