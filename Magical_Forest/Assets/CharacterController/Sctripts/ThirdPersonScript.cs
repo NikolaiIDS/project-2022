@@ -49,7 +49,7 @@ public class ThirdPersonScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        checkG = Physics.CheckSphere(GroundCheck.transform.position, 0.3f, lm);
+        checkG = Physics.CheckSphere(GroundCheck.transform.position, .3f, lm);
         //Debug.Log(checkG);
 
         CalculatingMovement();
@@ -59,9 +59,9 @@ public class ThirdPersonScript : MonoBehaviour
         
         crouch = anims.CrouchIsEnabled();
 
-        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 1, Input.GetAxisRaw("Vertical")).normalized;
 
-        float yRotation = cam.transform.localEulerAngles.y;//+ 180;
+        float yRotation = cam.transform.localEulerAngles.y + 6.76f;//+ 180;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, yRotation, ref turnSmoothVelocity, turnSmoothTime);
 
         if (direction.magnitude >= 0.1f && isAimed == false)
@@ -74,7 +74,7 @@ public class ThirdPersonScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, yRotation, 0);
         }
 
-        direction.y -= gravity;
+        direction.y -= gravity * Time.deltaTime;
         /*if (isDoubleJumpActive == false)
         {
             direction.y -= gravity;
@@ -142,11 +142,6 @@ public class ThirdPersonScript : MonoBehaviour
     public bool DoubleJump()
     {
         return isDoubleJumpActive;
-    }
-
-    private void Aiming()
-    {
-
-    }
+    }   
 }
 
