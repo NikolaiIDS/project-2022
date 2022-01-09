@@ -79,7 +79,10 @@ public class ThirdPersonScript : MonoBehaviour
         {
             direction.y -= gravity;
         }*/
-
+        if (checkG == false)
+        {
+            Debug.Log("checkG=false");
+        }
 
         if (checkG == true && crouch == false)
         {
@@ -122,7 +125,7 @@ public class ThirdPersonScript : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false && isAimed==false)
         {
             direction.x *= speed*2.5f;
-            direction.y *= speed;
+            //direction.y *= speed;
             direction.z *= speed * 2.5f;
             direction = transform.transform.TransformDirection(direction);
             controller.Move(direction * Time.deltaTime);
