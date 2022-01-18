@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FireballSccript : MonoBehaviour
 {
+    public ParticleSystem kaboom;
+    public ParticleSystem kaboom2;
     void Start()
     {
         StartCoroutine(BeforeDestroy());
@@ -19,6 +21,25 @@ public class FireballSccript : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Tree"))
+        {
+            ParticleSystem explosionEffect = Instantiate(kaboom)
+            as ParticleSystem;
+            explosionEffect.transform.position = transform.position;
+            explosionEffect.Play();
+            ParticleSystem explosionEffect2 = Instantiate(kaboom2)
+            as ParticleSystem; explosionEffect2.transform.position = transform.position;
+            explosionEffect2.Play();
+        }
+        else
+        {
+            ParticleSystem explosionEffect = Instantiate(kaboom)
+            as ParticleSystem;
+            explosionEffect.transform.position = transform.position;
+            explosionEffect.Play();
+        }
+
+
         Destroy(gameObject);
     }
 }
