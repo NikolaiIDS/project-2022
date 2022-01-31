@@ -26,7 +26,7 @@ public class ThirdPersonScript : MonoBehaviour
     private float directionY;
     bool isDoubleJumpActive = false;
     public float jump = 5;
-    private float jumpMultiplier = 2f;
+    private float jumpMultiplier = 1.5f;
     public float gravity = 9.81f;
 
     bool crouch;
@@ -49,7 +49,9 @@ public class ThirdPersonScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        checkG = Physics.CheckSphere(GroundCheck.transform.position, .15f, lm);
+        checkG = controller.isGrounded;
+
+        //checkG = Physics.CheckSphere(GroundCheck.transform.position, .15f, lm);
         //Debug.Log(checkG);
 
         CalculatingMovement();
@@ -68,28 +70,27 @@ public class ThirdPersonScript : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
-
         if (isAimed == true)
         {
             transform.rotation = Quaternion.Euler(0f, yRotation, 0);
         }
 
-        direction.y -= gravity * Time.deltaTime;
-        /*if (isDoubleJumpActive == false)
-        {
-            direction.y -= gravity;
-        }*/
-        if (checkG == false)
+
+        /*if (checkG == false)
         {
             Debug.Log("checkG=false");
-        }
+            
+            
+        }*/
+        direction.y -= Time.deltaTime * gravity;
+        //directionY = .1f;
 
         if (checkG == true && crouch == false)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isDoubleJumpActive = true;
-                directionY = jump;
+                directionY = jump;              
             }
         }
         else
@@ -103,9 +104,9 @@ public class ThirdPersonScript : MonoBehaviour
         directionY -= Time.deltaTime * gravity;
         direction.y = directionY;
 
+
         GCheck();
         DoubleJump();
-
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             
