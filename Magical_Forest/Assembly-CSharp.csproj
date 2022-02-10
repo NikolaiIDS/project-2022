@@ -56,10 +56,7 @@
     <Compile Include="Assets\CharacterController\Sctripts\characterCon.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\Player.cs" />
     <Compile Include="Assets\SampleSceneAssets\Scripts\PlayerMovement.cs" />
-    <Compile Include="Assets\TreesTool-master\TreesTool-master\Trees_Tool_Inspector.cs" />
-    <Compile Include="Assets\TreesTool-master\TreesTool-master\Trees_Tool.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\LookY.cs" />
-    <Compile Include="Assets\TreesTool-master\TreesTool-master\TextureScale.cs" />
     <Compile Include="Assets\SampleSceneAssets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\FireballSccript.cs" />
     <Compile Include="Assets\CharacterController\Sctripts\AnimationStateController.cs" />
