@@ -46,8 +46,8 @@ public class ThirdPersonScript : MonoBehaviour
         _cmAimedTransformY = cmAimed.transform.position.y;
         GroundCheck = GameObject.Find("GroundCheck");
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+      //  Cursor.lockState = CursorLockMode.Locked;
+      //  Cursor.visible = false;
 
         checkG = controller.isGrounded;
 

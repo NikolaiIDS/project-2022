@@ -8,7 +8,7 @@ public class MagicAbilitiesScript : MonoBehaviour
     public Transform cam;
 
 
-    
+
 
     void Update()
     {
@@ -18,7 +18,11 @@ public class MagicAbilitiesScript : MonoBehaviour
     }
     void Fire()
     {
-        Rigidbody bulletClone = (Rigidbody)Instantiate(bullet, transform.position, transform.rotation);
-        bulletClone.velocity = transform.forward * bulletSpeed;
+        if (Time.timeScale != 0)
+        {
+            Rigidbody bulletClone = (Rigidbody)Instantiate(bullet, transform.position, transform.rotation);
+            bulletClone.velocity = transform.forward * bulletSpeed;
+        }
+
     }
 }
