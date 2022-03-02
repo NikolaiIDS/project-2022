@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/SimpleNaturePack/Scenes/SimpleNaturePack_Demo.unity
     guid: 5e7af4bd95ac53a4cb784a9eedf8f6f9
   - enabled: 1
+    path: Assets/Scenes/Demo.unity
+    guid: cfcd1b4d07986744fa797f963965e739
+  - enabled: 0
     path: Assets/Scenes/Scene 1.unity
     guid: d01d159f51de9a64fb18beba7720ca8e
   m_configObjects: {}

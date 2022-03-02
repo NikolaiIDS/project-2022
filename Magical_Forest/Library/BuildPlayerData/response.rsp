@@ -9,6 +9,7 @@
 -a="D:\Users\Nikolai\mi gem\project-2022\Magical_Forest\Library\PlayerScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll"
 -a="D:\Users\Nikolai\mi gem\project-2022\Magical_Forest\Library\PlayerScriptAssemblies\UnityEngine.UI.dll"
 -a="D:\Users\Nikolai\mi gem\project-2022\Magical_Forest\Library\PlayerScriptAssemblies\sc.vegetationspawner.runtime.dll"
+-a="D:\Users\Nikolai\mi gem\project-2022\Magical_Forest\Library\PlayerScriptAssemblies\Unity.Polybrush.dll"
 -a="D:\Users\Nikolai\mi gem\project-2022\Magical_Forest\Library\PlayerScriptAssemblies\Cinemachine.dll"
 -a="D:\Users\Nikolai\mi gem\project-2022\Magical_Forest\Library\PlayerScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll"
 -a="D:\Users\Nikolai\mi gem\project-2022\Magical_Forest\Library\PlayerScriptAssemblies\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll"
