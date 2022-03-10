@@ -6,8 +6,12 @@ public class FireballSccript : MonoBehaviour
 {
     public ParticleSystem kaboom;
     public ParticleSystem kaboom2;
+    EnemyAI enemyAI;
+    public float dmg = 40;
+    //public EnemyAI enemyAI;
     void Start()
     {
+        enemyAI = GameObject.Find("Emeny").GetComponent<EnemyAI>();
         StartCoroutine(BeforeDestroy());
     }
 
@@ -31,6 +35,10 @@ public class FireballSccript : MonoBehaviour
             as ParticleSystem; explosionEffect2.transform.position = transform.position;
             explosionEffect2.Play();
         }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {            
+            enemyAI.DamageToEnemy(dmg);            
+        }
         else
         {
             ParticleSystem explosionEffect = Instantiate(kaboom)
@@ -38,8 +46,7 @@ public class FireballSccript : MonoBehaviour
             explosionEffect.transform.position = transform.position;
             explosionEffect.Play();
         }
-
-
         Destroy(gameObject);
     }
+    
 }

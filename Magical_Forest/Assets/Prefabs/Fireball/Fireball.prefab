@@ -347,3 +347,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kaboom: {fileID: 8479665978219016736, guid: ded7edfda79ce1448b5bd31ff51f67fb, type: 3}
   kaboom2: {fileID: 1523192294281251338, guid: 7d7f4edbc9447254582d3949204cfada, type: 3}
+  enemyAI: {fileID: 3997325334198782580, guid: a826744b98fb20e42b6baffc0e3be0c1, type: 3}
+  dmg: 40

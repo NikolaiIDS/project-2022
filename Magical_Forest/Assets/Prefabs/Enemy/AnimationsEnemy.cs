@@ -6,12 +6,14 @@ public class AnimationsEnemy : MonoBehaviour
 {
     private bool isRunning;
     private bool isIdle;
+    private bool isPunching;
+    private bool isDying;
     public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -19,6 +21,7 @@ public class AnimationsEnemy : MonoBehaviour
     {
         Idle(isIdle);
         Run(isRunning);
+        Punch(isPunching);
         if (isIdle == true && isRunning == false)
         {
             animator.SetBool("Idle", true);
@@ -29,6 +32,20 @@ public class AnimationsEnemy : MonoBehaviour
             animator.SetBool("Idle", false);
             animator.SetBool("Run", true);
         }
+        if (isPunching == true && isRunning == false)
+        {
+            animator.SetBool("Punch", true);
+            animator.SetBool("Run", false);
+        }
+        else if (isPunching == false && isRunning == true)
+        {
+            animator.SetBool("Punch", false);
+            animator.SetBool("Run", true);
+        }
+        if (isDying == true)
+        {
+            animator.SetBool("Dying", true);
+        }
     }
     public bool Idle(bool idle)
     {
@@ -36,7 +53,14 @@ public class AnimationsEnemy : MonoBehaviour
     }
     public bool Run(bool run)
     {
-        
         return isRunning = run;
+    }
+    public bool Punch(bool punch)
+    {
+        return isPunching = punch;
+    }
+    public bool Dying(bool die)
+    {
+        return isDying = die;
     }
 }

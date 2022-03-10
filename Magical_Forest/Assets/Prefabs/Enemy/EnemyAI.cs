@@ -5,27 +5,42 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform player;
+    Transform player;
     public float Distance;
 
     public bool isAngered;
 
     public bool run;
     public bool idle;
+    public bool punch;
+
+    public bool ifDamageIsDealt;
+    bool coroutine = false;
 
     public AnimationsEnemy anims;
- 
+
     public NavMeshAgent agent;
+
+    //[Header("Health")]
+    public float health = 200f;
+
     void Start()
     {
-        
+        player = GameObject.Find("Character").GetComponent<Transform>();
+        health = 200f;
     }
     void Update()
+    {        
+        EnemyMovement();
+    }
+    public void EnemyMovement()
     {
+        ifDamageIsDealt = false;
+
         Distance = Vector3.Distance(player.position, this.transform.position);
         if (Distance <= 7.5)
         {
-            isAngered = true;          
+            isAngered = true;
         }
         else
         {
@@ -37,17 +52,32 @@ public class EnemyAI : MonoBehaviour
             if (Distance <= 2)
             {
                 agent.isStopped = true;
+                punch = true;
+                anims.Punch(punch);
+                run = false;
+                anims.Run(run);
+                idle = false;
+                anims.Idle(idle);
+
+
+                if (ifDamageIsDealt == false && coroutine == false)
+                {
+                    StartCoroutine(Num());
+                }
+
             }
             else
             {
-                idle = false;
-                anims.Idle(idle);
+                punch = false;
+                anims.Punch(punch);
                 run = true;
                 anims.Run(run);
+                idle = false;
+                anims.Idle(idle);
                 agent.isStopped = false;
                 agent.SetDestination(player.position);
             }
-            
+
         }
         else
         {
@@ -59,6 +89,43 @@ public class EnemyAI : MonoBehaviour
 
             agent.isStopped = true;
         }
+        DamageToPlayer();
     }
 
+    public int DamageToPlayer()
+    {
+        if (ifDamageIsDealt == true)
+        {
+            return 20;
+        }
+        else return 0;
+    }
+    public void DamageToEnemy(float amount)
+    {
+        health -= amount;
+
+        Debug.Log(health);
+        if (health <= 0)
+        {
+            anims.Dying(true);
+            Dying();
+        }
+    }
+
+    IEnumerator Num()
+    {
+        ifDamageIsDealt = true;
+        coroutine = true;
+        yield return new WaitForSeconds(1.1f);
+        coroutine = false;
+
+    }
+    IEnumerator Dying()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(4f);
+            Destroy(gameObject);
+        }        
+    }
 }

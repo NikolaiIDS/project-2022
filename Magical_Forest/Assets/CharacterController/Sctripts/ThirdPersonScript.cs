@@ -6,12 +6,10 @@ public class ThirdPersonScript : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;
-    private AnimationStateController anims;
+    public AnimationStateController anims;
 
     public GameObject cinemachine;
-    private float _cinemachineTransformPosY;
     public GameObject cmAimed;
-    private float _cmAimedTransformY;
     private bool isAimed = false;
 
     public GameObject GroundCheck;
@@ -30,10 +28,15 @@ public class ThirdPersonScript : MonoBehaviour
     public float gravity = 9.81f;
 
     bool crouch;
+ 
+    [Header("Health")]
+    EnemyAI enemyAI;
+    public float health = 200;
 
     // Start is called before the first frame update
     void Start()
     {
+        enemyAI = GameObject.Find("Emeny").GetComponent<EnemyAI>();
         anims = GetComponent<AnimationStateController>();
         //cinemachine = GameObject.Find("CM1");
         //cmAimed = GameObject.Find("CM2");
@@ -42,12 +45,10 @@ public class ThirdPersonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _cinemachineTransformPosY = cinemachine.transform.position.y;
-        _cmAimedTransformY = cmAimed.transform.position.y;
         GroundCheck = GameObject.Find("GroundCheck");
 
-      //  Cursor.lockState = CursorLockMode.Locked;
-      //  Cursor.visible = false;
+        //  Cursor.lockState = CursorLockMode.Locked;
+        //  Cursor.visible = false;
 
         checkG = controller.isGrounded;
 
@@ -55,10 +56,11 @@ public class ThirdPersonScript : MonoBehaviour
         //Debug.Log(checkG);
 
         CalculatingMovement();
+        Health();
     }
     void CalculatingMovement()
     {
-        
+
         crouch = anims.CrouchIsEnabled();
 
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
@@ -90,14 +92,14 @@ public class ThirdPersonScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isDoubleJumpActive = true;
-                directionY = jump;              
+                directionY = jump;
             }
         }
         else
         {
             if (Input.GetKeyDown(KeyCode.Space) && isDoubleJumpActive == true && crouch == false)
             {
-                directionY = jump * jumpMultiplier;                
+                directionY = jump * jumpMultiplier;
                 isDoubleJumpActive = false;
             }
         }
@@ -109,23 +111,23 @@ public class ThirdPersonScript : MonoBehaviour
         DoubleJump();
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            
+
             isAimed = true;
             cinemachine.SetActive(false);
             cmAimed.SetActive(true);
         }
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
-           
+
             isAimed = false;
             cinemachine.SetActive(true);
             cmAimed.SetActive(false);
             //transform.rotation = Quaternion.Euler(0f, yRotation, 0);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false && isAimed==false)
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false && isAimed == false)
         {
-            direction.x *= speed*2.5f;
+            direction.x *= speed * 2.5f;
             //direction.y *= speed;
             direction.z *= speed * 2.5f;
             direction = transform.transform.TransformDirection(direction);
@@ -138,6 +140,11 @@ public class ThirdPersonScript : MonoBehaviour
             controller.Move(direction * Time.deltaTime);
         }
     }
+    public void Health()
+    {
+        health -= enemyAI.DamageToPlayer();
+        //Debug.Log(health);
+    }
     public bool GCheck()
     {
         return checkG;
@@ -146,6 +153,6 @@ public class ThirdPersonScript : MonoBehaviour
     public bool DoubleJump()
     {
         return isDoubleJumpActive;
-    }   
+    }
 }
 
