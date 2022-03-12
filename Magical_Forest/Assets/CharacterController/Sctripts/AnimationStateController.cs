@@ -41,6 +41,7 @@ public class AnimationStateController : MonoBehaviour
         {
             animator.SetBool("isCWfromW", false);
         }*/
+        
 
         // Crouch walking Forward
         if (!Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftControl))
@@ -247,5 +248,22 @@ public class AnimationStateController : MonoBehaviour
         }*/
         return _crouch;
     }
+
+    public void SwordController()
+    {
+        animator.SetLayerWeight(1, 1f);
+        IsSwordEquipped(true);
+    }
+    public bool IsSwordEquipped(bool a)
+    {
+        return a;
+    }
+
+    public void WandController()
+    {
+        animator.SetLayerWeight(1, 0f);
+    }
+
+
 
 }

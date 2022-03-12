@@ -28,10 +28,13 @@ public class ThirdPersonScript : MonoBehaviour
     public float gravity = 9.81f;
 
     bool crouch;
- 
+
     [Header("Health")]
     EnemyAI enemyAI;
     public float health = 200;
+
+    [Header("Anims")]
+    public AnimationStateController animStateCon;
 
     // Start is called before the first frame update
     void Start()

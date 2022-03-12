@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     Transform player;
     public float Distance;
+    public ParticleSystem kaboom;
 
     public bool isAngered;
 
@@ -103,12 +104,12 @@ public class EnemyAI : MonoBehaviour
     public void DamageToEnemy(float amount)
     {
         health -= amount;
-
+        
         Debug.Log(health);
         if (health <= 0)
         {
-            anims.Dying(true);
-            Dying();
+            agent.isStopped = true;
+            StartCoroutine(Dying());
         }
     }
 
@@ -121,11 +122,13 @@ public class EnemyAI : MonoBehaviour
 
     }
     IEnumerator Dying()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(4f);
-            Destroy(gameObject);
-        }        
+    {        
+        anims.Dying(true);
+        yield return new WaitForSeconds(3f);
+        ParticleSystem explosionEffect = Instantiate(kaboom)
+            as ParticleSystem;
+        explosionEffect.transform.position = transform.position;
+        explosionEffect.Play();
+        Destroy(gameObject);
     }
 }

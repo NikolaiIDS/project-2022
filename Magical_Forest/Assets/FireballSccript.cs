@@ -6,7 +6,7 @@ public class FireballSccript : MonoBehaviour
 {
     public ParticleSystem kaboom;
     public ParticleSystem kaboom2;
-    EnemyAI enemyAI;
+    private EnemyAI enemyAI;
     public float dmg = 40;
     //public EnemyAI enemyAI;
     void Start()

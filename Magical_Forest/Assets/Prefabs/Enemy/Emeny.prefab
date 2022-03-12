@@ -46,10 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf7637daf70e1d489b7d9d42f11dcc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 3997325334198782578}
-  player: {fileID: 0}
-  fireball: {fileID: 3805892121452802370, guid: 34eafd39910b643408dc1625d1f4b89b, type: 3}
   Distance: 0
+  kaboom: {fileID: 8479665978219016736, guid: ded7edfda79ce1448b5bd31ff51f67fb, type: 3}
   isAngered: 0
   run: 0
   idle: 0

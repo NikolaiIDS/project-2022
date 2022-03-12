@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    private AnimationStateController animStateController;
+
+
     public static bool Paused = false;
     public GameObject menuUI;
     public GameObject settings;
@@ -25,7 +28,6 @@ public class PauseMenu : MonoBehaviour
     bool holding2;
     bool holding3;
     bool holding4;
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -91,11 +93,14 @@ public class PauseMenu : MonoBehaviour
             swordpng2.SetActive(false);
             swordpng3.SetActive(false);
             swordpng4.SetActive(false);
+            animStateController.WandController();
         }
         sword1.SetActive(true);
         swordpng1.SetActive(true);
         staff.SetActive(false);
         holding1 = true;
+        animStateController.SwordController();
+
     }
     public void Item2()
     {
@@ -107,11 +112,14 @@ public class PauseMenu : MonoBehaviour
             swordpng1.SetActive(false);
             swordpng3.SetActive(false);
             swordpng4.SetActive(false);
+            animStateController.WandController();
         }
         sword2.SetActive(true);
         swordpng2.SetActive(true);
         staff.SetActive(false);
         holding2 = true;
+        animStateController.SwordController();
+
     }
     public void Item3()
     {
@@ -128,6 +136,8 @@ public class PauseMenu : MonoBehaviour
         swordpng3.SetActive(true);
         staff.SetActive(false);
         holding3 = true;
+        animStateController.SwordController();
+
     }
     public void Item4()
     {
@@ -146,6 +156,7 @@ public class PauseMenu : MonoBehaviour
 
         staff.SetActive(false);
         holding4 = true;
+        animStateController.SwordController();
     }
     public void Staff()
     {
@@ -165,6 +176,7 @@ public class PauseMenu : MonoBehaviour
         holding2 = false;
         holding3 = false;
         holding4 = false;
+        animStateController.WandController();
     }
 
     public void SwordMenunt()
@@ -193,6 +205,7 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
+        animStateController = GameObject.Find("Character").GetComponent<AnimationStateController>();
         Cursor.SetCursor(cursorArrow, Vector2.zero, CursorMode.ForceSoftware);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
