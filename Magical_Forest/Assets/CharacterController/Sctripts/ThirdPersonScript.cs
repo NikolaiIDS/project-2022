@@ -6,7 +6,7 @@ public class ThirdPersonScript : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;
-    public AnimationStateController anims;
+
 
     public GameObject cinemachine;
     public GameObject cmAimed;
@@ -17,6 +17,7 @@ public class ThirdPersonScript : MonoBehaviour
     public LayerMask lm;
 
     public float speed = 6f;
+    float runMultipliier = 2;
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
@@ -34,8 +35,8 @@ public class ThirdPersonScript : MonoBehaviour
     public float health = 200;
 
     [Header("Anims")]
-    public AnimationStateController animStateCon;
-
+    public AnimationStateController anims;
+    bool swordEquipped;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +65,12 @@ public class ThirdPersonScript : MonoBehaviour
     void CalculatingMovement()
     {
 
+        swordEquipped = anims.swordIsEquipped;
+        if (swordEquipped == true)
+        {
+            runMultipliier = 4f;
+        }
+        else runMultipliier = 2.5f;
         crouch = anims.CrouchIsEnabled();
 
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
@@ -130,9 +137,9 @@ public class ThirdPersonScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false && isAimed == false)
         {
-            direction.x *= speed * 2.5f;
+            direction.x *= speed * runMultipliier;
             //direction.y *= speed;
-            direction.z *= speed * 2.5f;
+            direction.z *= speed * runMultipliier;
             direction = transform.transform.TransformDirection(direction);
             controller.Move(direction * Time.deltaTime);
         }

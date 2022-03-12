@@ -14,6 +14,9 @@ public class AnimationStateController : MonoBehaviour
     int isCrouching;
     int isCrouchW;
     bool _crouch = false;
+
+    public bool swordIsEquipped;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -252,16 +255,12 @@ public class AnimationStateController : MonoBehaviour
     public void SwordController()
     {
         animator.SetLayerWeight(1, 1f);
-        IsSwordEquipped(true);
+        swordIsEquipped = true;
     }
-    public bool IsSwordEquipped(bool a)
-    {
-        return a;
-    }
-
     public void WandController()
     {
         animator.SetLayerWeight(1, 0f);
+        swordIsEquipped = false;
     }
 
 
