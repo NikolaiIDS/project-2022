@@ -16,11 +16,16 @@ public class PauseMenu : MonoBehaviour
     public GameObject sword3;
     public GameObject sword4;
     public GameObject staff;
+    public GameObject swordpng1;
+    public GameObject swordpng2;
+    public GameObject swordpng3;
+    public GameObject swordpng4;
     bool holdings;
     bool holding1;
     bool holding2;
     bool holding3;
     bool holding4;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -47,7 +52,7 @@ public class PauseMenu : MonoBehaviour
         {
             SwordMenunt();
         }
-       
+
     }
     public void Resume()
     {
@@ -77,14 +82,18 @@ public class PauseMenu : MonoBehaviour
     }
     public void Item1()
     {
-        if ( holding2 || holding3 || holding4)
+        if (holding2 || holding3 || holding4)
         {
-            
+
             sword2.SetActive(false);
             sword3.SetActive(false);
             sword4.SetActive(false);
+            swordpng2.SetActive(false);
+            swordpng3.SetActive(false);
+            swordpng4.SetActive(false);
         }
         sword1.SetActive(true);
+        swordpng1.SetActive(true);
         staff.SetActive(false);
         holding1 = true;
     }
@@ -93,11 +102,14 @@ public class PauseMenu : MonoBehaviour
         if (holding1 || holding3 || holding4)
         {
             sword1.SetActive(false);
-           
             sword3.SetActive(false);
             sword4.SetActive(false);
+            swordpng1.SetActive(false);
+            swordpng3.SetActive(false);
+            swordpng4.SetActive(false);
         }
         sword2.SetActive(true);
+        swordpng2.SetActive(true);
         staff.SetActive(false);
         holding2 = true;
     }
@@ -107,25 +119,52 @@ public class PauseMenu : MonoBehaviour
         {
             sword1.SetActive(false);
             sword2.SetActive(false);
-            sword3.SetActive(false);
             sword4.SetActive(false);
+            swordpng1.SetActive(false);
+            swordpng2.SetActive(false);
+            swordpng4.SetActive(false);
         }
         sword3.SetActive(true);
+        swordpng3.SetActive(true);
         staff.SetActive(false);
         holding3 = true;
     }
     public void Item4()
     {
-        if (holding1 || holding2 || holding3 )
+        if (holding1 || holding2 || holding3)
         {
             sword1.SetActive(false);
             sword2.SetActive(false);
             sword3.SetActive(false);
-           
+            swordpng1.SetActive(false);
+            swordpng2.SetActive(false);
+            swordpng3.SetActive(false);
+
         }
         sword4.SetActive(true);
+        swordpng4.SetActive(true);
+
         staff.SetActive(false);
         holding4 = true;
+    }
+    public void Staff()
+    {
+        if (holding1 || holding2 || holding3 || holding4)
+        {
+            sword1.SetActive(false);
+            sword2.SetActive(false);
+            sword3.SetActive(false);
+            sword4.SetActive(false);
+            swordpng1.SetActive(false);
+            swordpng2.SetActive(false);
+            swordpng3.SetActive(false);
+            swordpng4.SetActive(false);
+        }
+        staff.SetActive(true);
+        holding1 = false;
+        holding2 = false;
+        holding3 = false;
+        holding4 = false;
     }
 
     public void SwordMenunt()
