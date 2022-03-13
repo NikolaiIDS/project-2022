@@ -6,15 +6,19 @@ public class MagicAbilitiesScript : MonoBehaviour
     public float bulletSpeed = 10;
     public Rigidbody bullet;
     public Transform cam;
-
-
-
-
+    AnimationStateController anims;
+    void Start()
+    {
+        anims = GameObject.Find("Character").GetComponent<AnimationStateController>();
+    }
     void Update()
     {
-        transform.rotation = Quaternion.Euler(cam.transform.localEulerAngles.x, cam.transform.localEulerAngles.y, 0);
-        if (Input.GetButtonDown("Fire1"))
-            Fire();
+        if (!anims.swordIsEquipped)
+        {
+            transform.rotation = Quaternion.Euler(cam.transform.localEulerAngles.x, cam.transform.localEulerAngles.y, 0);
+            if (Input.GetButtonDown("Fire1"))
+                Fire();
+        }
     }
     void Fire()
     {

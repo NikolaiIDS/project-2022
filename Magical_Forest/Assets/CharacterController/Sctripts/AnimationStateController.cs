@@ -183,7 +183,11 @@ public class AnimationStateController : MonoBehaviour
         {
             animator.SetBool("fromCtoCI", false);
         }
-
+        if (Input.GetKey(KeyCode.Mouse0) && swordIsEquipped)
+        {
+            animator.SetLayerWeight(2, 1f);
+        }
+        else animator.SetLayerWeight(2, 0f);
         CrouchIsEnabled();
     }
     public bool CrouchIsEnabled()
@@ -250,6 +254,10 @@ public class AnimationStateController : MonoBehaviour
             _crouch = true;
         }*/
         return _crouch;
+
+        
+
+
     }
 
     public void SwordController()

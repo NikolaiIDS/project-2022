@@ -1004,7 +1004,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6018436759899323429}
-  m_LocalRotation: {x: 0.052612014, y: 0.7034781, z: -0.43150294, w: 0.5622774}
+  m_LocalRotation: {x: 0.052611984, y: 0.7034781, z: -0.43150288, w: 0.5622774}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1161,7 +1161,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6018436760197375321}
-  m_LocalRotation: {x: 0.3156778, y: -0.055930242, z: 0.01864342, w: 0.94703317}
+  m_LocalRotation: {x: 0.3156778, y: -0.055930253, z: 0.018643418, w: 0.94703317}
   m_LocalPosition: {x: 2.967062, y: -10.99, z: -9.930487}
   m_LocalScale: {x: 2.5000002, y: 2.5000002, z: 2.5000002}
   m_Children: []
@@ -1505,7 +1505,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6018436760266747399}
-  m_LocalRotation: {x: 0.052612014, y: 0.7034781, z: -0.43150288, w: 0.56227744}
+  m_LocalRotation: {x: 0.052611984, y: 0.7034781, z: -0.43150288, w: 0.5622774}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1935,7 +1935,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6018436761280428083}
-  m_LocalRotation: {x: 0.052611984, y: 0.7034781, z: -0.43150288, w: 0.5622774}
+  m_LocalRotation: {x: 0.052612014, y: 0.7034781, z: -0.43150288, w: 0.56227744}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2222,7 +2222,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 6.99
+  m_Height: 6.426872
   m_Radius: 1.5
   m_SlopeLimit: 45
   m_StepOffset: 0.2
@@ -2261,6 +2261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tps: {fileID: 6018436760035061809}
+  swordIsEquipped: 0
 --- !u!114 &6018436760035061809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2275,7 +2276,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 6018436760035061822}
   cam: {fileID: 6018436760197375320}
-  anims: {fileID: 0}
   cinemachine: {fileID: 6018436761488191963}
   cmAimed: {fileID: 316552908}
   GroundCheck: {fileID: 2461714483427228066}
@@ -2287,6 +2287,7 @@ MonoBehaviour:
   jump: 1.5
   gravity: 4
   health: 200
+  anims: {fileID: 6018436760035061808}
 --- !u!1001 &165481147
 PrefabInstance:
   m_ObjectHideFlags: 0
