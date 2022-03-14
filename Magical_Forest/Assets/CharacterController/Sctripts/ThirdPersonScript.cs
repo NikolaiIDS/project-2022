@@ -68,6 +68,11 @@ public class ThirdPersonScript : MonoBehaviour
         swordEquipped = anims.swordIsEquipped;
         if (swordEquipped == true)
         {
+            if (true)
+            {
+
+            }
+
             runMultipliier = 4f;
         }
         else runMultipliier = 2.5f;

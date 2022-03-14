@@ -136,7 +136,7 @@ public class AnimationStateController : MonoBehaviour
         else animator.SetBool("diagonal", false);
 
         // Sprint while holding Forward and Crouch=FALSE
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.Mouse1))
         {
             animator.SetBool("isRunning", true);
         }
@@ -147,7 +147,7 @@ public class AnimationStateController : MonoBehaviour
         }
 
         // 
-        if (isRunning && (!shiftPressed || !(Input.GetKey(KeyCode.W) /*|| Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)*/)))
+        if (isRunning && (!shiftPressed || !(Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.Mouse1) /*|| Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)*/)))
         {
             animator.SetBool(isRunningHash, false);
             if (Input.GetKey(KeyCode.LeftControl))
@@ -183,11 +183,24 @@ public class AnimationStateController : MonoBehaviour
         {
             animator.SetBool("fromCtoCI", false);
         }
-        if (Input.GetKey(KeyCode.Mouse0) && swordIsEquipped)
-        {
+        if (Input.GetKey(KeyCode.Mouse0) && swordIsEquipped && groundCheck && !Input.GetKey(KeyCode.LeftShift))
+        {            
             animator.SetLayerWeight(2, 1f);
+            animator.SetBool("Hit", true);
         }
-        else animator.SetLayerWeight(2, 0f);
+        else
+        {
+            animator.SetLayerWeight(2, 0f);
+            animator.SetBool("Hit", false);
+        }
+
+        if (tps.health <= 0)
+        {
+            animator.SetLayerWeight(3, 1f);
+            animator.SetBool("Dead", true);
+
+        }
+
         CrouchIsEnabled();
     }
     public bool CrouchIsEnabled()

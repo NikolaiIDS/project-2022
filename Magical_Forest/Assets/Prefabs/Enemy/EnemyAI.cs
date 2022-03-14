@@ -131,4 +131,15 @@ public class EnemyAI : MonoBehaviour
         explosionEffect.Play();
         Destroy(gameObject);
     }
+
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Sword")*//* && Input.GetKey(KeyCode.Mouse0)*//*)
+        {
+            DamageToEnemy(60);
+            // a = true;
+            Debug.Log("is hitting");
+        }
+        //else a = false;
+    }*/
 }
