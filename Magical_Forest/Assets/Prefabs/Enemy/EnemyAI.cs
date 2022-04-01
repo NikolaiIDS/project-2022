@@ -24,6 +24,8 @@ public class EnemyAI : MonoBehaviour
 
     //[Header("Health")]
     public float health = 200f;
+    bool isDead = false;
+
 
     void Start()
     {
@@ -36,61 +38,67 @@ public class EnemyAI : MonoBehaviour
     }
     public void EnemyMovement()
     {
-        ifDamageIsDealt = false;
 
-        Distance = Vector3.Distance(player.position, this.transform.position);
-        if (Distance <= 7.5)
+        if (!isDead)
         {
-            isAngered = true;
-        }
-        else
-        {
-            isAngered = false;
-        }
+            ifDamageIsDealt = false;
 
-        if (isAngered)
-        {
-            if (Distance <= 2)
+            Distance = Vector3.Distance(player.position, this.transform.position);
+            if (Distance <= 7.5)
             {
-                agent.isStopped = true;
-                punch = true;
-                anims.Punch(punch);
-                run = false;
-                anims.Run(run);
-                idle = false;
-                anims.Idle(idle);
+                isAngered = true;
+            }
+            else
+            {
+                isAngered = false;
+            }
 
-
-                if (ifDamageIsDealt == false && coroutine == false)
+            if (isAngered)
+            {
+                if (Distance <= 2)
                 {
-                    StartCoroutine(Num());
+                    agent.isStopped = true;
+                    punch = true;
+                    anims.Punch(punch);
+                    run = false;
+                    anims.Run(run);
+                    idle = false;
+                    anims.Idle(idle);
+
+
+                    if (ifDamageIsDealt == false && coroutine == false)
+                    {
+                        StartCoroutine(Num());
+                    }
+
+                }
+                else
+                {
+                    punch = false;
+                    anims.Punch(punch);
+                    run = true;
+                    anims.Run(run);
+                    idle = false;
+                    anims.Idle(idle);
+                    agent.isStopped = false;
+                    agent.SetDestination(player.position);
                 }
 
             }
             else
             {
-                punch = false;
-                anims.Punch(punch);
-                run = true;
-                anims.Run(run);
-                idle = false;
+                isAngered = false;
+                idle = true;
                 anims.Idle(idle);
-                agent.isStopped = false;
-                agent.SetDestination(player.position);
+                run = false;
+                anims.Run(run);
+
+                agent.isStopped = true;
             }
-
+            DamageToPlayer();
         }
-        else
-        {
-            isAngered = false;
-            idle = true;
-            anims.Idle(idle);
-            run = false;
-            anims.Run(run);
+        else agent.isStopped = true;
 
-            agent.isStopped = true;
-        }
-        DamageToPlayer();
     }
 
     public int DamageToPlayer()
@@ -109,6 +117,7 @@ public class EnemyAI : MonoBehaviour
         if (health <= 0)
         {
             agent.isStopped = true;
+            isDead = true;
             StartCoroutine(Dying());
         }
     }
@@ -129,6 +138,7 @@ public class EnemyAI : MonoBehaviour
             as ParticleSystem;
         explosionEffect.transform.position = transform.position;
         explosionEffect.Play();
+
         Destroy(gameObject);
     }
 
