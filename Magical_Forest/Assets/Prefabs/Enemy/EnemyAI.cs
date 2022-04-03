@@ -22,13 +22,23 @@ public class EnemyAI : MonoBehaviour
 
     public NavMeshAgent agent;
 
-    //[Header("Health")]
+    [Header("Health")]
+    
     public float health = 200f;
     bool isDead = false;
+
+    [Header("Level")]
+    public int level;
+    public int coinsDrop;
+    public GameObject coinPrefab;
+    public Transform enemyMesh;
+
 
 
     void Start()
     {
+        level = 2;
+        coinsDrop = level * 5;
         player = GameObject.Find("Character").GetComponent<Transform>();
         health = 200f;
     }
@@ -118,6 +128,7 @@ public class EnemyAI : MonoBehaviour
         {
             agent.isStopped = true;
             isDead = true;
+
             StartCoroutine(Dying());
         }
     }
@@ -131,15 +142,20 @@ public class EnemyAI : MonoBehaviour
 
     }
     IEnumerator Dying()
-    {        
+    {
         anims.Dying(true);
         yield return new WaitForSeconds(3f);
         ParticleSystem explosionEffect = Instantiate(kaboom)
             as ParticleSystem;
         explosionEffect.transform.position = transform.position;
         explosionEffect.Play();
-
+       
         Destroy(gameObject);
+        for (int i = 0; i < coinsDrop; i++)
+        {
+            Instantiate(coinPrefab, new Vector3(enemyMesh.position.x + Random.Range(.1f, 1f), enemyMesh.position.y + Random.Range(.1f, 1f), enemyMesh.position.z+Random.Range(.1f, 1f)), Quaternion.identity);
+            //Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(Random.Range(-180f,180f), 0, 0));
+        }
     }
 
     /*private void OnCollisionEnter(Collision collision)

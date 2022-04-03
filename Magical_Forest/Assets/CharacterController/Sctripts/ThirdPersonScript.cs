@@ -37,6 +37,8 @@ public class ThirdPersonScript : MonoBehaviour
     [Header("Anims")]
     public AnimationStateController anims;
     bool swordEquipped;
+    [Header("Coins")]
+    public int coins;
     // Start is called before the first frame update
     void Start()
     {

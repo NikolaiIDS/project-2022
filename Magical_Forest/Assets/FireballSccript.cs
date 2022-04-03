@@ -35,17 +35,19 @@ public class FireballSccript : MonoBehaviour
             as ParticleSystem; explosionEffect2.transform.position = transform.position;
             explosionEffect2.Play();
         }
-        else if (collision.gameObject.CompareTag("Enemy"))
-        {            
-            enemyAI.DamageToEnemy(dmg);            
-        }
         else
         {
             ParticleSystem explosionEffect = Instantiate(kaboom)
             as ParticleSystem;
             explosionEffect.transform.position = transform.position;
             explosionEffect.Play();
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                enemyAI.DamageToEnemy(dmg);
+            }
         }
+        
+        
         Destroy(gameObject);
     }
     
