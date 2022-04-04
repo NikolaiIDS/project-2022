@@ -153,7 +153,7 @@ public class EnemyAI : MonoBehaviour
         Destroy(gameObject);
         for (int i = 0; i < coinsDrop; i++)
         {
-            Instantiate(coinPrefab, new Vector3(enemyMesh.position.x + Random.Range(.1f, 1f), enemyMesh.position.y + Random.Range(.1f, 1f), enemyMesh.position.z+Random.Range(.1f, 1f)), Quaternion.identity);
+            Instantiate(coinPrefab, new Vector3(enemyMesh.position.x + Random.Range(.1f, 1f), enemyMesh.position.y + Random.Range(.5f, 1f), enemyMesh.position.z+Random.Range(.1f, 1f)), Quaternion.identity);
             //Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(Random.Range(-180f,180f), 0, 0));
         }
     }

@@ -33,12 +33,24 @@ public class ThirdPersonScript : MonoBehaviour
     [Header("Health")]
     EnemyAI enemyAI;
     public float health = 200;
+    public float maxHealth = 200;
 
     [Header("Anims")]
     public AnimationStateController anims;
     bool swordEquipped;
+
     [Header("Coins")]
     public int coins;
+
+    [Header("Shield")]
+    
+    public GameObject shield;
+    public float shieldDuration;
+    public float shieldMax;
+    public float shieldSec;
+    public bool shieldIsActive = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -156,10 +168,26 @@ public class ThirdPersonScript : MonoBehaviour
             direction = transform.transform.TransformDirection(direction);
             controller.Move(direction * Time.deltaTime);
         }
+
+        if (Input.GetKeyDown("2") && !shieldIsActive)
+        {
+            StartCoroutine(ShieldDuration());
+        }
+        if (!shieldIsActive && shieldDuration < shieldMax)
+        {
+            shieldDuration += .1f;
+            
+        }
+
     }
     public void Health()
     {
-        health -= enemyAI.DamageToPlayer();
+        if (shieldIsActive)
+        {
+            shieldDuration -= enemyAI.DamageToPlayer();
+        }
+        else health -= enemyAI.DamageToPlayer();
+
         //Debug.Log(health);
     }
     public bool GCheck()
@@ -170,6 +198,22 @@ public class ThirdPersonScript : MonoBehaviour
     public bool DoubleJump()
     {
         return isDoubleJumpActive;
+    }
+    IEnumerator ShieldDuration()
+    {
+        shield.SetActive(true);
+        shieldIsActive = true;
+        yield return new WaitForSeconds(shieldSec);
+        if (shieldDuration <= 0) 
+        {
+            shieldIsActive = false;
+            shield.SetActive(false);
+            shieldDuration = 0;
+            
+        }
+        shieldIsActive = false;
+        shield.SetActive(false);
+        
     }
 }
 
