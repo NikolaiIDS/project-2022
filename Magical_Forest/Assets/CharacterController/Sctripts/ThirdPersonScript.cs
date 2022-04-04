@@ -157,9 +157,10 @@ public class ThirdPersonScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && crouch == false && isAimed == false)
         {
-            direction.x *= speed * runMultipliier;
+            direction.z *= runMultipliier;
+            direction *= speed;
             //direction.y *= speed;
-            direction.z *= speed * runMultipliier;
+            //direction.z *= speed * runMultipliier;
             direction = transform.transform.TransformDirection(direction);
             controller.Move(direction * Time.deltaTime);
         }

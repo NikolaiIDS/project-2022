@@ -249,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 8942479295435871827}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 474.92825, y: 0.42305917, z: 424.34982}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4397119269297549502}
   m_Father: {fileID: 0}
@@ -347,5 +347,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kaboom: {fileID: 8479665978219016736, guid: ded7edfda79ce1448b5bd31ff51f67fb, type: 3}
   kaboom2: {fileID: 1523192294281251338, guid: 7d7f4edbc9447254582d3949204cfada, type: 3}
-  enemyAI: {fileID: 3997325334198782580, guid: a826744b98fb20e42b6baffc0e3be0c1, type: 3}
   dmg: 40
