@@ -49,6 +49,7 @@ public class ThirdPersonScript : MonoBehaviour
     public float shieldMax;
     public float shieldSec;
     public bool shieldIsActive = false;
+    private bool isExtraHitAllowed = true;
 
 
     // Start is called before the first frame update
@@ -175,8 +176,11 @@ public class ThirdPersonScript : MonoBehaviour
         }
         if (!shieldIsActive && shieldDuration < shieldMax)
         {
-            shieldDuration += .1f;
-            
+            shieldDuration += 5f * Time.deltaTime;            
+        }
+        if (shieldDuration > shieldMax)
+        {
+            shieldDuration = shieldMax;
         }
 
     }
@@ -185,6 +189,21 @@ public class ThirdPersonScript : MonoBehaviour
         if (shieldIsActive)
         {
             shieldDuration -= enemyAI.DamageToPlayer();
+            
+            if (shieldDuration - enemyAI.DamageToPlayer() <= 0  && isExtraHitAllowed)
+            {
+                float extraDamage = enemyAI.DamageToPlayer() - shieldDuration;
+                shieldDuration -= shieldDuration;
+                health -= extraDamage;
+                isExtraHitAllowed = false;
+                shieldIsActive = false;
+                shield.SetActive(false);
+
+                StopCoroutine(ShieldDuration());
+
+                StartCoroutine(ShieldCooldown());
+
+            }
         }
         else health -= enemyAI.DamageToPlayer();
 
@@ -203,17 +222,20 @@ public class ThirdPersonScript : MonoBehaviour
     {
         shield.SetActive(true);
         shieldIsActive = true;
+        isExtraHitAllowed = true;
         yield return new WaitForSeconds(shieldSec);
-        if (shieldDuration <= 0) 
-        {
-            shieldIsActive = false;
-            shield.SetActive(false);
-            shieldDuration = 0;
-            
-        }
-        shieldIsActive = false;
-        shield.SetActive(false);
         
+        shield.SetActive(false);
+        StartCoroutine(ShieldCooldown());
+
+    }
+    IEnumerator ShieldCooldown()
+    {
+        if (!shield.activeSelf && shieldIsActive)
+        {
+            yield return new WaitForSeconds(2);
+            shieldIsActive = false;
+        }
     }
 }
 
