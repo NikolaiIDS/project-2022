@@ -54,9 +54,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\SampleSceneAssets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
+    <Compile Include="Assets\Nicrom\PolyPacks\Wind\Assets\Scripts\Editor\LPVegetation_MaterialInspector.cs" />
     <Compile Include="Assets\ClickToAdd\Editor\NoiseMapGenerator.cs" />
     <Compile Include="Assets\ClickToAdd\Editor\ClickToAdd.cs" />
-    <Compile Include="Assets\Nicrom\PolyPacks\Wind\Assets\Scripts\Editor\LPVegetation_MaterialInspector.cs" />
+    <Compile Include="Assets\EmaceArt\Slavic World Free\Editor\WelcomeWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
