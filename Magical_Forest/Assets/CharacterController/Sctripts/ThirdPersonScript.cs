@@ -32,12 +32,17 @@ public class ThirdPersonScript : MonoBehaviour
 
     [Header("Health")]
     EnemyAI enemyAI;
+
+    public float damageDealt;
     public float health = 200;
     public float maxHealth = 200;
 
     [Header("Anims")]
     public AnimationStateController anims;
     bool swordEquipped;
+    public float Distance;
+    public GameObject lookAtEnemy;
+    public GameObject Neck;
 
     [Header("Coins")]
     public int coins;
@@ -51,11 +56,18 @@ public class ThirdPersonScript : MonoBehaviour
     public bool shieldIsActive = false;
     private bool isExtraHitAllowed = true;
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            enemyAI = other.gameObject.GetComponent<EnemyAI>();
+            Debug.Log("AAAAA");
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        enemyAI = GameObject.Find("Emeny").GetComponent<EnemyAI>();
+        //enemyAI = GameObject.Find("Emeny").GetComponent<EnemyAI>();
         anims = GetComponent<AnimationStateController>();
         //cinemachine = GameObject.Find("CM1");
         //cmAimed = GameObject.Find("CM2");
@@ -73,13 +85,14 @@ public class ThirdPersonScript : MonoBehaviour
 
         //checkG = Physics.CheckSphere(GroundCheck.transform.position, .15f, lm);
         //Debug.Log(checkG);
-
         CalculatingMovement();
         Health();
+        //Debug.Log(damageDealt);
+        
+
     }
     void CalculatingMovement()
     {
-
         swordEquipped = anims.swordIsEquipped;
         if (swordEquipped == true)
         {
@@ -184,7 +197,17 @@ public class ThirdPersonScript : MonoBehaviour
             shieldDuration = shieldMax;
         }
 
+        Distance = Vector3.Distance(lookAtEnemy.transform.position, this.transform.position);
+        if (Distance >= 40)
+        {
+            Neck.transform.LookAt(lookAtEnemy.transform.position);
+        }
     }
+    
+    /*public void DamageIsDealt(float value)
+    {
+        damageDealt = value;
+    }*/
     public void Health()
     {
         if (shieldIsActive)

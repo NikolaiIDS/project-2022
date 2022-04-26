@@ -53,11 +53,11 @@
     <UnityVersion>2020.3.19f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\EmaceArt\Slavic World Free\Editor\WelcomeWindow.cs" />
     <Compile Include="Assets\SampleSceneAssets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <Compile Include="Assets\Nicrom\PolyPacks\Wind\Assets\Scripts\Editor\LPVegetation_MaterialInspector.cs" />
     <Compile Include="Assets\ClickToAdd\Editor\NoiseMapGenerator.cs" />
     <Compile Include="Assets\ClickToAdd\Editor\ClickToAdd.cs" />
-    <Compile Include="Assets\EmaceArt\Slavic World Free\Editor\WelcomeWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -284,6 +284,9 @@
     </Reference>
     <Reference Include="UnityEditor.Graphs">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.19f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.19f1\Editor\Data\PlaybackEngines\WebGLSupport\UnityEditor.WebGL.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.19f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>

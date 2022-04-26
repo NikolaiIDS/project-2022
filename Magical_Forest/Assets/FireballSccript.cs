@@ -11,7 +11,7 @@ public class FireballSccript : MonoBehaviour
     //public EnemyAI enemyAI;
     void Start()
     {
-        enemyAI = GameObject.Find("Emeny").GetComponent<EnemyAI>();
+        //enemyAI = GameObject.Find("Emeny").GetComponent<EnemyAI>();
         StartCoroutine(BeforeDestroy());
     }
 
@@ -43,6 +43,7 @@ public class FireballSccript : MonoBehaviour
             explosionEffect.Play();
             if (collision.gameObject.CompareTag("Enemy"))
             {
+                enemyAI = collision.gameObject.GetComponent<EnemyAI>();
                 enemyAI.DamageToEnemy(dmg);
             }
         }

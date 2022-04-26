@@ -15,6 +15,11 @@ public class AnimationStateController : MonoBehaviour
     int isCrouchW;
     bool _crouch = false;
 
+    public float Distance;
+    public GameObject lookAtEnemy;
+    public GameObject Neck;
+
+
     public bool swordIsEquipped;
 
     // Start is called before the first frame update
@@ -193,6 +198,20 @@ public class AnimationStateController : MonoBehaviour
             animator.SetLayerWeight(2, 0f);
             animator.SetBool("Hit", false);
         }
+
+
+        Distance = Vector3.Distance(lookAtEnemy.transform.position, this.transform.position);
+        if (Distance <= 70)
+        {
+            animator.SetLayerWeight(4, 1f);
+            Neck.transform.LookAt(lookAtEnemy.transform.position);
+        }
+        else
+        {
+            animator.SetLayerWeight(4, 0f);
+        }
+
+
 
         if (tps.health <= 0)
         {

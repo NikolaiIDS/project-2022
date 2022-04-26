@@ -5,9 +5,56 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    Transform player;
+    Transform playerT;
+    ThirdPersonScript player;
+    [SerializeField]
+    private float Distance;
+    [SerializeField]
+    private ParticleSystem kaboom;
+    [SerializeField]
+    private float distanceOfDetection;
+
+    [SerializeField]
+    private bool isAngered;
+
+    [SerializeField]
+    private bool run;
+    [SerializeField]
+    private bool idle;
+    [SerializeField]
+    private bool punch;
+
+    [SerializeField]
+    private bool ifDamageIsDealt;
+    private bool coroutine = false;
+
+    [SerializeField]
+    private AnimationsEnemy anims;
+
+    [SerializeField]
+    private NavMeshAgent agent;
+
+    [Header("Health")]
+    [SerializeField]
+    private float health = 200f;
+    bool isDead = false;
+
+    [Header("Level")]
+    [SerializeField]
+    private int level;
+    [SerializeField]
+    private int coinsDrop;
+    [SerializeField]
+    private GameObject coinPrefab;
+    [SerializeField]
+    private Transform enemyMesh;
+
+/*
+    Transform playerT;
+    ThirdPersonScript player;
     public float Distance;
     public ParticleSystem kaboom;
+    public float distanceOfDetection;
 
     public bool isAngered;
 
@@ -16,14 +63,13 @@ public class EnemyAI : MonoBehaviour
     public bool punch;
 
     public bool ifDamageIsDealt;
-    bool coroutine = false;
+    public bool coroutine = false;
 
     public AnimationsEnemy anims;
 
     public NavMeshAgent agent;
 
     [Header("Health")]
-    
     public float health = 200f;
     bool isDead = false;
 
@@ -32,14 +78,14 @@ public class EnemyAI : MonoBehaviour
     public int coinsDrop;
     public GameObject coinPrefab;
     public Transform enemyMesh;
-
-
+*/
 
     void Start()
     {
         level = 2;
         coinsDrop = level * 5;
-        player = GameObject.Find("Character").GetComponent<Transform>();
+        playerT = GameObject.Find("Character").GetComponent<Transform>();
+        player = GameObject.Find("Character").GetComponent<ThirdPersonScript>();
         health = 200f;
     }
     void Update()
@@ -53,8 +99,9 @@ public class EnemyAI : MonoBehaviour
         {
             ifDamageIsDealt = false;
 
-            Distance = Vector3.Distance(player.position, this.transform.position);
-            if (Distance <= 7.5)
+
+            Distance = Vector3.Distance(playerT.position, this.transform.position);
+            if (Distance <= distanceOfDetection)
             {
                 isAngered = true;
             }
@@ -65,7 +112,7 @@ public class EnemyAI : MonoBehaviour
 
             if (isAngered)
             {
-                if (Distance <= 2)
+                if (Distance <= 10)
                 {
                     agent.isStopped = true;
                     punch = true;
@@ -91,7 +138,7 @@ public class EnemyAI : MonoBehaviour
                     idle = false;
                     anims.Idle(idle);
                     agent.isStopped = false;
-                    agent.SetDestination(player.position);
+                    agent.SetDestination(playerT.position);
                 }
 
             }
@@ -105,7 +152,19 @@ public class EnemyAI : MonoBehaviour
 
                 agent.isStopped = true;
             }
-            DamageToPlayer();
+            /*if (ifDamageIsDealt == true)
+            {
+                player.DamageIsDealt(20f);
+                //player.health -= 20;
+                Debug.Log("Hit works");
+            }
+            else
+            {
+                player.DamageIsDealt(0f);
+                //player.health -= 0;
+            }
+
+            //DamageToPlayer();*/
         }
         else agent.isStopped = true;
 
@@ -153,7 +212,7 @@ public class EnemyAI : MonoBehaviour
         Destroy(gameObject);
         for (int i = 0; i < coinsDrop; i++)
         {
-            Instantiate(coinPrefab, new Vector3(enemyMesh.position.x + Random.Range(.1f, 1f), enemyMesh.position.y + Random.Range(.5f, 1f), enemyMesh.position.z+Random.Range(.1f, 1f)), Quaternion.identity);
+            Instantiate(coinPrefab, new Vector3(enemyMesh.position.x + Random.Range(1f,5f), enemyMesh.position.y + Random.Range(1f,5f), enemyMesh.position.z+Random.Range(1f,5f)), Quaternion.identity);
             //Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(Random.Range(-180f,180f), 0, 0));
         }
     }

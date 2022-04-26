@@ -13,14 +13,14 @@ public class CoinPickUp : MonoBehaviour
     {
         tps = GameObject.Find("Character").GetComponent<ThirdPersonScript>();
         player = GameObject.Find("Character").GetComponent<Transform>();
-        speed = 2;
+        speed = 4;
     }
 
     // Update is called once per frame
     void Update()
     {
         distance = Vector3.Distance(transform.position, player.position);
-        if (distance <= 3f )
+        if (distance <= 10f )
         {
             //Debug.Log(distance);
             transform.LookAt(player.position);

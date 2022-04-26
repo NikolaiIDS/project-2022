@@ -21,7 +21,6 @@ public class healthbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         currHealth = Character.health;
         HealthBAr.fillAmount = currHealth / maxHealth;
     }

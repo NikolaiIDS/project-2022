@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3997325334198782581}
   - component: {fileID: 3997325334198782580}
   - component: {fileID: 3997325334198782579}
+  - component: {fileID: 341582742405319546}
   m_Layer: 3
   m_Name: Emeny
   m_TagString: Enemy
@@ -27,9 +28,10 @@ Transform:
   m_GameObject: {fileID: 3997325334198782578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.852, y: 3.066, z: 0.92}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 3527412845943281214}
+  - {fileID: 658254311651376095}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Distance: 0
   kaboom: {fileID: 8479665978219016736, guid: ded7edfda79ce1448b5bd31ff51f67fb, type: 3}
+  distanceOfDetection: 50
   isAngered: 0
   run: 0
   idle: 0
@@ -69,7 +72,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1.5
+  m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -81,17 +84,17 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &1994006123
+--- !u!136 &341582742405319546
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303246514406886532}
+  m_GameObject: {fileID: 3997325334198782578}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 7.235985
+  m_Radius: 9
   m_Height: 14.47197
   m_Direction: 1
   m_Center: {x: 0.11164665, y: 8.590002, z: 2.52}
@@ -127,6 +130,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3997325334082541644}
+--- !u!1 &8965081145503404743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 658254311651376095}
+  m_Layer: 3
+  m_Name: PlayerToEnemyLookAt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &658254311651376095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8965081145503404743}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 10.67, z: 3.63}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3997325334198782581}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3997325332849111509
 PrefabInstance:
   m_ObjectHideFlags: 0
