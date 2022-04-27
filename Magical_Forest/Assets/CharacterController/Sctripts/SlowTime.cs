@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlowTime : MonoBehaviour
 {
     public float SlowiTime;
-    public GameObject Particles;
+   
     private float currTime = 1;
    
     public Animator Animator;
@@ -22,7 +22,7 @@ public class SlowTime : MonoBehaviour
             Debug.Log("pressed");
             currTime = SlowiTime;
             Time.timeScale = SlowiTime;
-            Particles.SetActive(true);
+            
             Animator.GetComponent<Animator>().Play("Start");
         }
        
@@ -31,7 +31,7 @@ public class SlowTime : MonoBehaviour
         if (Input.GetKeyUp("1"))
         {
             Debug.Log("down");
-            Particles.SetActive(false);
+           
             currTime = 1f;
             Time.timeScale = currTime;
             Animator.GetComponent<Animator>().Play("End");
