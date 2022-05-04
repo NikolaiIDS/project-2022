@@ -198,7 +198,6 @@ public class EnemyAI : MonoBehaviour
         coroutine = true;
         yield return new WaitForSeconds(1.1f);
         coroutine = false;
-
     }
     IEnumerator Dying()
     {

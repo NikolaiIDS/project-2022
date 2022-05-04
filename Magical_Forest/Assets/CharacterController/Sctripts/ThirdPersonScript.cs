@@ -34,6 +34,7 @@ public class ThirdPersonScript : MonoBehaviour
     EnemyAI enemyAI;
 
     public float damageDealt;
+    public bool hitIsEnabled;
     public float health = 200;
     public float maxHealth = 200;
 
@@ -58,10 +59,22 @@ public class ThirdPersonScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "EnemyHit")
         {
-            enemyAI = other.gameObject.GetComponent<EnemyAI>();
-            Debug.Log("AAAAA");
+            
+            Debug.Log("YES");
+            if (hitIsEnabled)
+            {
+                damageDealt = 20f;
+                Health();
+                hitIsEnabled = false;
+                damageDealt = 0;
+            }
+        }
+        else if (other.gameObject.tag != "EnemyHit")
+        {
+            Debug.Log("NO");
+            hitIsEnabled = true;
         }
     }
     // Start is called before the first frame update
@@ -212,11 +225,11 @@ public class ThirdPersonScript : MonoBehaviour
     {
         if (shieldIsActive)
         {
-            shieldDuration -= enemyAI.DamageToPlayer();
+            shieldDuration -= damageDealt;
             
-            if (shieldDuration - enemyAI.DamageToPlayer() <= 0  && isExtraHitAllowed)
+            if (shieldDuration - damageDealt <= 0  && isExtraHitAllowed)
             {
-                float extraDamage = enemyAI.DamageToPlayer() - shieldDuration;
+                float extraDamage = damageDealt - shieldDuration;
                 shieldDuration -= shieldDuration;
                 health -= extraDamage;
                 isExtraHitAllowed = false;
@@ -229,7 +242,7 @@ public class ThirdPersonScript : MonoBehaviour
 
             }
         }
-        else health -= enemyAI.DamageToPlayer();
+        else health -= damageDealt;
 
         //Debug.Log(health);
     }
