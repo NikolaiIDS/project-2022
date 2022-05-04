@@ -5,7 +5,8 @@ using UnityEngine;
 public class SwordCollision : MonoBehaviour
 {
     EnemyAI enemyAI;
-    public bool a;
+    public float damage = 80;
+    public bool a = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +17,18 @@ public class SwordCollision : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") && Input.GetKey(KeyCode.Mouse0))
         {
-            StartCoroutine(Hit());
+            if (a)
+            {
+                enemyAI = collision.gameObject.GetComponent<EnemyAI>();
+                enemyAI.health -= damage;
+                a = false;
+            }
+            else if (!a)
+            {
+                a = true;
+            }
+            
         }
     }
-    IEnumerator Hit()
-    {
-        yield return new WaitForSeconds(1.07f);
-        enemyAI.DamageToEnemy(60);
-    }
+
 }

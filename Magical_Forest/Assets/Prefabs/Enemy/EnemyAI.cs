@@ -35,8 +35,7 @@ public class EnemyAI : MonoBehaviour
     private NavMeshAgent agent;
 
     [Header("Health")]
-    [SerializeField]
-    private float health = 200f;
+    public float health = 200f;
     bool isDead = false;
 
     [Header("Level")]
@@ -48,6 +47,8 @@ public class EnemyAI : MonoBehaviour
     private GameObject coinPrefab;
     [SerializeField]
     private Transform enemyMesh;
+    [SerializeField]
+    private GameObject healthPotion;
 
 /*
     Transform playerT;
@@ -112,7 +113,7 @@ public class EnemyAI : MonoBehaviour
 
             if (isAngered)
             {
-                if (Distance <= 10)
+                if (Distance <= 8)
                 {
                     agent.isStopped = true;
                     punch = true;
@@ -168,6 +169,15 @@ public class EnemyAI : MonoBehaviour
         }
         else agent.isStopped = true;
 
+
+        Debug.Log(health);
+        if (health <= 0)
+        {
+            agent.isStopped = true;
+            isDead = true;
+
+            StartCoroutine(Dying());
+        }
     }
 
     public int DamageToPlayer()
@@ -177,19 +187,6 @@ public class EnemyAI : MonoBehaviour
             return 20;
         }
         else return 0;
-    }
-    public void DamageToEnemy(float amount)
-    {
-        health -= amount;
-        
-        Debug.Log(health);
-        if (health <= 0)
-        {
-            agent.isStopped = true;
-            isDead = true;
-
-            StartCoroutine(Dying());
-        }
     }
 
     IEnumerator Num()
@@ -212,8 +209,11 @@ public class EnemyAI : MonoBehaviour
         for (int i = 0; i < coinsDrop; i++)
         {
             Instantiate(coinPrefab, new Vector3(enemyMesh.position.x + Random.Range(1f,5f), enemyMesh.position.y + Random.Range(1f,5f), enemyMesh.position.z+Random.Range(1f,5f)), Quaternion.identity);
+            
+
             //Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(Random.Range(-180f,180f), 0, 0));
         }
+        Instantiate(healthPotion, new Vector3(enemyMesh.position.x + Random.Range(1f, 5f), enemyMesh.position.y + Random.Range(1f, 5f), enemyMesh.position.z + Random.Range(1f, 5f)), Quaternion.identity);
     }
 
     /*private void OnCollisionEnter(Collision collision)

@@ -49,7 +49,7 @@ public class ThirdPersonScript : MonoBehaviour
     public int coins;
 
     [Header("Shield")]
-    
+
     public GameObject shield;
     public float shieldDuration;
     public float shieldMax;
@@ -61,8 +61,7 @@ public class ThirdPersonScript : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyHit")
         {
-            
-            Debug.Log("YES");
+            //Debug.Log("YES");
             if (hitIsEnabled)
             {
                 damageDealt = 20f;
@@ -70,10 +69,14 @@ public class ThirdPersonScript : MonoBehaviour
                 hitIsEnabled = false;
                 damageDealt = 0;
             }
+            else if (!hitIsEnabled)
+            {
+                hitIsEnabled = true;
+            }
         }
         else if (other.gameObject.tag != "EnemyHit")
         {
-            Debug.Log("NO");
+            //Debug.Log("NO");
             hitIsEnabled = true;
         }
     }
@@ -101,7 +104,7 @@ public class ThirdPersonScript : MonoBehaviour
         CalculatingMovement();
         Health();
         //Debug.Log(damageDealt);
-        
+
 
     }
     void CalculatingMovement()
@@ -203,31 +206,36 @@ public class ThirdPersonScript : MonoBehaviour
         }
         if (!shieldIsActive && shieldDuration < shieldMax)
         {
-            shieldDuration += 5f * Time.deltaTime;            
+            shieldDuration += 5f * Time.deltaTime;
         }
         if (shieldDuration > shieldMax)
         {
             shieldDuration = shieldMax;
         }
 
-        Distance = Vector3.Distance(lookAtEnemy.transform.position, this.transform.position);
+        /*Distance = Vector3.Distance(lookAtEnemy.transform.position, this.transform.position);
         if (Distance >= 40)
         {
             Neck.transform.LookAt(lookAtEnemy.transform.position);
-        }
+        }*/
     }
-    
+
     /*public void DamageIsDealt(float value)
     {
         damageDealt = value;
     }*/
     public void Health()
     {
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+
         if (shieldIsActive)
         {
             shieldDuration -= damageDealt;
-            
-            if (shieldDuration - damageDealt <= 0  && isExtraHitAllowed)
+
+            if (shieldDuration - damageDealt <= 0 && isExtraHitAllowed)
             {
                 float extraDamage = damageDealt - shieldDuration;
                 shieldDuration -= shieldDuration;
@@ -261,7 +269,7 @@ public class ThirdPersonScript : MonoBehaviour
         shieldIsActive = true;
         isExtraHitAllowed = true;
         yield return new WaitForSeconds(shieldSec);
-        
+
         shield.SetActive(false);
         StartCoroutine(ShieldCooldown());
 

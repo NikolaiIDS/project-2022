@@ -44,7 +44,7 @@ public class FireballSccript : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 enemyAI = collision.gameObject.GetComponent<EnemyAI>();
-                enemyAI.DamageToEnemy(dmg);
+                enemyAI.health -= dmg;
             }
         }
         
