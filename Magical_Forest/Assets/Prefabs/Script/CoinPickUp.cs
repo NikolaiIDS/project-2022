@@ -28,12 +28,21 @@ public class CoinPickUp : MonoBehaviour
         }
         
     }
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            tps.coins++;
             Destroy(this.gameObject);
+            Debug.Log("Coin collides");
+            tps.coins++;
+            
         }
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(this.gameObject);
+        }
+    }*/
 }

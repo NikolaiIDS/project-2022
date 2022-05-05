@@ -12,11 +12,11 @@ public class HealthPotionPickUp : MonoBehaviour
     {
         tps = GameObject.Find("Character").GetComponent<ThirdPersonScript>();
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            tps.health += (float)Random.Range(MinHP, MaxHP);
+            tps.health += Random.Range(MinHP, MaxHP);
             Destroy(this.gameObject);
         }
     }

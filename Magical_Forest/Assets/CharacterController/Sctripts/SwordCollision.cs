@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwordCollision : MonoBehaviour
 {
     EnemyAI enemyAI;
-    public float damage = 80;
+    public int damage = 80;
     public bool a = true;
     // Start is called before the first frame update
     void Start()

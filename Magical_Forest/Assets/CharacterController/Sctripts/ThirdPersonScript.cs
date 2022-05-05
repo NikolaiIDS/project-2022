@@ -34,10 +34,10 @@ public class ThirdPersonScript : MonoBehaviour
     [Header("Health")]
     EnemyAI enemyAI;
 
-    public float damageDealt;
+    public int damageDealt;
     public bool hitIsEnabled = true;
-    public float health = 200;
-    public float maxHealth = 200;
+    public int health = 200;
+    public int maxHealth = 200;
 
     [Header("Anims")]
     public AnimationStateController anims;
@@ -53,8 +53,8 @@ public class ThirdPersonScript : MonoBehaviour
 
     public GameObject shield;
     public float shieldDuration;
-    public float shieldMax;
-    public float shieldSec;
+    public int shieldMax;
+    public int shieldSec;
     public bool shieldIsActive = false;
     private bool isExtraHitAllowed = true;
 
@@ -62,10 +62,10 @@ public class ThirdPersonScript : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyHit")
         {
-            Debug.Log("YES");
+            //Debug.Log("YES");
             if (hitIsEnabled)
             {
-                damageDealt = 20f;
+                damageDealt = 20;
                 Health();
                 hitIsEnabled = false;
                 damageDealt = 0;
@@ -80,12 +80,31 @@ public class ThirdPersonScript : MonoBehaviour
             //Debug.Log("NO");
             hitIsEnabled = true;
         }
+        
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            //coins += other.gameObject.GetComponent<CoinBagScript>().coins;
+            Destroy(collision.gameObject);
+            coins++;
+            Debug.Log("Coin collides");
+        }
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
 
-        Physics.IgnoreLayerCollision(7, 11);
+        Physics.IgnoreLayerCollision(10, 12);
+        Physics.IgnoreLayerCollision(10, 10);
+        Physics.IgnoreLayerCollision(12, 12);
+        Physics.IgnoreLayerCollision(7, 12);
+        Physics.IgnoreLayerCollision(7, 10);
+
+
         //enemyAI = GameObject.Find("Emeny").GetComponent<EnemyAI>();
         anims = GetComponent<AnimationStateController>();
         //cinemachine = GameObject.Find("CM1");
@@ -96,6 +115,8 @@ public class ThirdPersonScript : MonoBehaviour
     void Update()
     {
         GroundCheck = GameObject.Find("GroundCheck");
+
+
 
         //  Cursor.lockState = CursorLockMode.Locked;
         //  Cursor.visible = false;
@@ -209,7 +230,7 @@ public class ThirdPersonScript : MonoBehaviour
         }
         if (!shieldIsActive && shieldDuration < shieldMax)
         {
-            shieldDuration += 5f * Time.deltaTime;
+            shieldDuration += 15*Time.deltaTime;
         }
         if (shieldDuration > shieldMax)
         {
@@ -240,7 +261,7 @@ public class ThirdPersonScript : MonoBehaviour
 
             if (shieldDuration - damageDealt <= 0 && isExtraHitAllowed)
             {
-                float extraDamage = damageDealt - shieldDuration;
+                int extraDamage = damageDealt - (int)shieldDuration;
                 shieldDuration -= shieldDuration;
                 health -= extraDamage;
                 isExtraHitAllowed = false;
@@ -254,7 +275,10 @@ public class ThirdPersonScript : MonoBehaviour
             }
         }
         else health -= damageDealt;
-
+        if (health < 0) 
+        {
+            health = 0;
+        }
         //Debug.Log(health);
     }
     public bool GCheck()

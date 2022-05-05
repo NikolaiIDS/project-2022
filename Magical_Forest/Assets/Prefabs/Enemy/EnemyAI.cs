@@ -38,7 +38,7 @@ public class EnemyAI : MonoBehaviour
     private GameObject neck;
 
     [Header("Health")]
-    public float health = 200f;
+    public int health = 200;
     bool isDead = false;
 
     [Header("Level")]
@@ -90,7 +90,7 @@ public class EnemyAI : MonoBehaviour
         coinsDrop = level * 5;
         playerT = GameObject.Find("Character").GetComponent<Transform>();
         player = GameObject.Find("Character").GetComponent<ThirdPersonScript>();
-        health = 200f;
+        health = 200;
     }
     void Update()
     {        
@@ -98,8 +98,18 @@ public class EnemyAI : MonoBehaviour
     }
     public void EnemyMovement()
     {
-
-        if (!isDead)
+        if (player.health <= 0)
+        {
+            agent.isStopped = true;
+            punch = false;
+            anims.Punch(punch);
+            run = false;
+            anims.Run(run);
+            idle = true;
+            anims.Idle(idle);
+            return;
+        }
+        else if (!isDead)
         {
             ifDamageIsDealt = false;
 
@@ -176,12 +186,12 @@ public class EnemyAI : MonoBehaviour
         else agent.isStopped = true;
 
 
-        Debug.Log(health);
-        if (health <= 0)
+        //Debug.Log(health);
+        if (health <= 0 && !isDead)
         {
-            agent.isStopped = true;
             isDead = true;
-
+            agent.isStopped = true;
+            Debug.Log("AAA");
             StartCoroutine(Dying());
         }
     }
@@ -210,17 +220,23 @@ public class EnemyAI : MonoBehaviour
             as ParticleSystem;
         explosionEffect.transform.position = transform.position;
         explosionEffect.Play();
-       
+
         Destroy(gameObject);
-        for (int i = 0; i < coinsDrop; i++)
+        Instantiate(healthPotion, new Vector3(enemyMesh.position.x + Random.Range(1f, 5f), enemyMesh.position.y + Random.Range(1f, 5f), enemyMesh.position.z + Random.Range(1f, 5f)), Quaternion.identity);
+        /*
+                CoinBagScript coinBag;
+                GameObject a = Instantiate(coinPrefab, new Vector3(enemyMesh.position.x + Random.Range(1f, 5f), enemyMesh.position.y + Random.Range(1f, 5f), enemyMesh.position.z + Random.Range(1f, 5f)), Quaternion.identity);
+                coinBag = a.GetComponent<CoinBagScript>();
+                coinBag.coins = coinsDrop;*/
+        for (int i = 1; i <= coinsDrop; i++)
         {
-            Instantiate(coinPrefab, new Vector3(enemyMesh.position.x + Random.Range(1f,5f), enemyMesh.position.y + Random.Range(1f,5f), enemyMesh.position.z+Random.Range(1f,5f)), Quaternion.identity);
-            
+            Instantiate(coinPrefab, new Vector3(enemyMesh.position.x + Random.Range(1f, 5f), enemyMesh.position.y + Random.Range(1f, 5f), enemyMesh.position.z + Random.Range(1f, 5f)), Quaternion.identity);
+
 
             //Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(Random.Range(-180f,180f), 0, 0));
         }
-        Instantiate(healthPotion, new Vector3(enemyMesh.position.x + Random.Range(1f, 5f), enemyMesh.position.y + Random.Range(1f, 5f), enemyMesh.position.z + Random.Range(1f, 5f)), Quaternion.identity);
     }
+        
 
     /*private void OnCollisionEnter(Collision collision)
     {

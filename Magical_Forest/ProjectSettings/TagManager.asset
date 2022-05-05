@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - EnemyHit
   - Sword
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Not in Reflection
   - Coin
   - playerUnhittable
-  - 
+  - HealthPotion
   - 
   - 
   - 
@@ -45,4 +46,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bar1
+    uniqueID: 37995353
+    locked: 0
+  - name: Bar2
+    uniqueID: 3231678965
+    locked: 0
+  - name: TextOverBar
+    uniqueID: 3607621617
+    locked: 0
+  - name: PauseMenu
+    uniqueID: 68510333
     locked: 0

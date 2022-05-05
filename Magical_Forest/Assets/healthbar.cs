@@ -7,12 +7,12 @@ public class healthbar : MonoBehaviour
 {
     ThirdPersonScript Character;
     private Image HealthBAr;
+    public Text _health;
     public float currHealth;
     private float maxHealth;
     
     void Start()
     {
-        
         HealthBAr = GetComponent<Image>();
         Character = FindObjectOfType<ThirdPersonScript>();
         maxHealth = Character.maxHealth;
@@ -21,6 +21,7 @@ public class healthbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _health.text = (int)currHealth + "/" + (int)maxHealth;
         currHealth = Character.health;
         HealthBAr.fillAmount = currHealth / maxHealth;
     }
