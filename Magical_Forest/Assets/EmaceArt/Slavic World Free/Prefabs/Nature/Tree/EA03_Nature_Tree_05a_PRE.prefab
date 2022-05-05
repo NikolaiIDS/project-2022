@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 4295137389264786}
   - component: {fileID: 33379884369842554}
   - component: {fileID: 23292801719695252}
+  - component: {fileID: 1321989582008148031}
   m_Layer: 0
   m_Name: EA03_Nature_Tree_05a_LOD0
   m_TagString: Untagged
@@ -223,6 +224,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1321989582008148031
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721070000742566}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: f5f76ccdfb5475149bc5298d2b842a34, type: 3}
 --- !u!1 &1808361766642558
 GameObject:
   m_ObjectHideFlags: 0
