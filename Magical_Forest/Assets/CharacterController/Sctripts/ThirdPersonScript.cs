@@ -28,13 +28,14 @@ public class ThirdPersonScript : MonoBehaviour
     private float jumpMultiplier = 1.5f;
     public float gravity = 9.81f;
 
+
     bool crouch;
 
     [Header("Health")]
     EnemyAI enemyAI;
 
     public float damageDealt;
-    public bool hitIsEnabled;
+    public bool hitIsEnabled = true;
     public float health = 200;
     public float maxHealth = 200;
 
@@ -61,7 +62,7 @@ public class ThirdPersonScript : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyHit")
         {
-            //Debug.Log("YES");
+            Debug.Log("YES");
             if (hitIsEnabled)
             {
                 damageDealt = 20f;
@@ -83,6 +84,8 @@ public class ThirdPersonScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        Physics.IgnoreLayerCollision(7, 11);
         //enemyAI = GameObject.Find("Emeny").GetComponent<EnemyAI>();
         anims = GetComponent<AnimationStateController>();
         //cinemachine = GameObject.Find("CM1");

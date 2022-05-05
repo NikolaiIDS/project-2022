@@ -34,6 +34,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private NavMeshAgent agent;
 
+    [SerializeField]
+    private GameObject neck;
+
     [Header("Health")]
     public float health = 200f;
     bool isDead = false;
@@ -100,7 +103,7 @@ public class EnemyAI : MonoBehaviour
         {
             ifDamageIsDealt = false;
 
-
+            
             Distance = Vector3.Distance(playerT.position, this.transform.position);
             if (Distance <= distanceOfDetection)
             {
@@ -113,6 +116,8 @@ public class EnemyAI : MonoBehaviour
 
             if (isAngered)
             {
+                neck.transform.LookAt(playerT);
+                transform.LookAt(playerT);
                 if (Distance <= 8)
                 {
                     agent.isStopped = true;
@@ -124,14 +129,15 @@ public class EnemyAI : MonoBehaviour
                     anims.Idle(idle);
 
 
-                    if (ifDamageIsDealt == false && coroutine == false)
+                    /*if (ifDamageIsDealt == false && coroutine == false)
                     {
                         StartCoroutine(Num());
-                    }
+                    }*/
 
                 }
                 else
                 {
+                    
                     punch = false;
                     anims.Punch(punch);
                     run = true;
@@ -180,7 +186,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public int DamageToPlayer()
+    /*public int DamageToPlayer()
     {
         if (ifDamageIsDealt == true)
         {
@@ -195,7 +201,7 @@ public class EnemyAI : MonoBehaviour
         coroutine = true;
         yield return new WaitForSeconds(1.1f);
         coroutine = false;
-    }
+    }*/
     IEnumerator Dying()
     {
         anims.Dying(true);
