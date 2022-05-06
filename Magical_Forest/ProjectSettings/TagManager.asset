@@ -10,6 +10,7 @@ TagManager:
   - EnemyHit
   - Sword
   - Coin
+  - Fireball
   layers:
   - Default
   - TransparentFX
