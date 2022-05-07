@@ -7,16 +7,16 @@ ModelImporter:
       74: 7241771982285646821
     second: metarig|CubeAction
   - first:
-      74: -2463781497245029270
-    second: Velo Idle
-  - first:
-      74: -7536546058115350168
-    second: Velo run (1)
-  - first:
       74: -7536546058115350168
     second: metarig|metarigAction.002
   - first:
-      74: -3273038667360560263
+      74: 474799553734737904
+    second: Velo Idle
+  - first:
+      74: 2572885954138240456
+    second: Velo Idle
+  - first:
+      74: 2686681335485226410
     second: Velo Run
   - first:
       74: 2650129659301433313
@@ -79,11 +79,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Velo Idle
-      takeName: metarig|metarigAction.001
+      name: metarig|metarigAction.002
+      takeName: metarig|metarigAction.002
       internalID: 0
       firstFrame: 0
-      lastFrame: 250
+      lastFrame: 494
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -108,11 +108,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: metarig|metarigAction.002
+      name: Velo Idle
       takeName: metarig|metarigAction.002
       internalID: 0
-      firstFrame: 251
-      lastFrame: 267
+      firstFrame: 0
+      lastFrame: 250
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -170,7 +170,7 @@ ModelImporter:
       takeName: metarig|metarigAction.002
       internalID: 0
       firstFrame: 268
-      lastFrame: 287
+      lastFrame: 295
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

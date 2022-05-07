@@ -88,7 +88,7 @@ public class EnemyAI : MonoBehaviour
     {
         level = 2;
         coinsDrop = level * 5;
-        playerT = GameObject.Find("Character").GetComponent<Transform>();
+        playerT = GameObject.Find("EnemyShootAt").GetComponent<Transform>();
         player = GameObject.Find("Character").GetComponent<ThirdPersonScript>();
         health = 200;
     }
