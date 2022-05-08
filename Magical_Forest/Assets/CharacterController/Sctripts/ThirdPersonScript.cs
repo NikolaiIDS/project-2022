@@ -65,7 +65,7 @@ public class ThirdPersonScript : MonoBehaviour
             //Debug.Log("YES");
             if (hitIsEnabled)
             {
-                damageDealt = 20;
+                damageDealt = 30;
                 Health();
                 hitIsEnabled = false;
                 damageDealt = 0;
@@ -79,6 +79,13 @@ public class ThirdPersonScript : MonoBehaviour
         {
             //Debug.Log("NO");
             hitIsEnabled = true;
+        }
+        if (other.gameObject.tag == "EnemySpikes")
+        {
+            //Debug.Log("Hits");
+            damageDealt = 10;
+            Health();
+            damageDealt = 0;
         }
         
     }
@@ -103,6 +110,8 @@ public class ThirdPersonScript : MonoBehaviour
         Physics.IgnoreLayerCollision(12, 12);
         Physics.IgnoreLayerCollision(7, 12);
         Physics.IgnoreLayerCollision(7, 10);
+        Physics.IgnoreLayerCollision(7, 14);
+        //Physics.IgnoreLayerCollision(13, 14);
 
 
         //enemyAI = GameObject.Find("Emeny").GetComponent<EnemyAI>();

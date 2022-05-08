@@ -11,6 +11,8 @@ TagManager:
   - Sword
   - Coin
   - Fireball
+  - EnemySpikes
+  - Velo
   layers:
   - Default
   - TransparentFX
@@ -25,8 +27,8 @@ TagManager:
   - Coin
   - playerUnhittable
   - HealthPotion
-  - 
-  - 
+  - Velo
+  - VeloShots
   - 
   - 
   - 

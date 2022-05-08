@@ -43,10 +43,10 @@ public class VeloEnemyAnimations : MonoBehaviour
             animator.SetBool("Attack", false);
             animator.SetBool("Run", true);
         }
-        /*if (isDying == true)
+        if (isDying == true)
         {
-            animator.SetBool("Dying", true);
-        }*/
+            animator.SetBool("Dead", true);
+        }
     }
     public bool Idle(bool idle)
     {

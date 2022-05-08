@@ -47,7 +47,7 @@ public class VeloEnemyAI : MonoBehaviour
     private Transform shootFrom;
 
     [Header("Health")]
-    public int health = 200;
+    public int health;
     bool isDead = false;
 
     [Header("Level")]
@@ -68,7 +68,7 @@ public class VeloEnemyAI : MonoBehaviour
         coinsDrop = level * 5;
         playerT = GameObject.Find("EnemyShootAt").GetComponent<Transform>();
         player = GameObject.Find("Character").GetComponent<ThirdPersonScript>();
-        health = 200;
+        health = 100;
     }
     void Update()
     {
@@ -90,6 +90,13 @@ public class VeloEnemyAI : MonoBehaviour
             idle = true;
             anims.Idle(idle);
             return;
+        }
+        if (health <= 0 && !isDead)
+        {
+            isDead = true;
+            agent.isStopped = true;
+            Debug.Log("AAA");
+            StartCoroutine(Dying());
         }
         else if (!isDead)
         {
@@ -174,13 +181,7 @@ public class VeloEnemyAI : MonoBehaviour
 
 
         //Debug.Log(health);
-        if (health <= 0 && !isDead)
-        {
-            isDead = true;
-            agent.isStopped = true;
-            Debug.Log("AAA");
-            StartCoroutine(Dying());
-        }
+        
     }
 
     IEnumerator Shooting()
@@ -188,10 +189,12 @@ public class VeloEnemyAI : MonoBehaviour
         coroutine = true;
         yield return new WaitForSeconds(.2f);
         Instantiate(Spike, new Vector3(shootFrom.position.x + 1f, shootFrom.position.y, shootFrom.position.z), shootFrom.rotation);
+        yield return new WaitForSeconds(.05f);
         Instantiate(Spike, shootFrom.position, shootFrom.rotation);
+        yield return new WaitForSeconds(.05f);
         Instantiate(Spike, new Vector3(shootFrom.position.x - 1f, shootFrom.position.y, shootFrom.position.z), shootFrom.rotation);
-        Debug.Log("shoots");
-        yield return new WaitForSeconds(.825f);        
+        //Debug.Log("shoots");
+        yield return new WaitForSeconds(.725f);        
         
         coroutine = false;
         
@@ -201,7 +204,7 @@ public class VeloEnemyAI : MonoBehaviour
     IEnumerator Dying()
     {
         anims.Dying(true);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         ParticleSystem explosionEffect = Instantiate(kaboom)
             as ParticleSystem;
         explosionEffect.transform.position = transform.position;

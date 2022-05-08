@@ -7,6 +7,8 @@ public class FireballSccript : MonoBehaviour
     public ParticleSystem kaboom;
     public ParticleSystem kaboom2;
     private EnemyAI enemyAI;
+    private VeloEnemyAI veloEnemyAI;
+
     public int dmg = 40;
     //public EnemyAI enemyAI;
     void Start()
@@ -44,7 +46,14 @@ public class FireballSccript : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 enemyAI = collision.gameObject.GetComponent<EnemyAI>();
+               
                 enemyAI.health -= dmg;
+            }
+            if (collision.gameObject.CompareTag("Velo"))
+            {
+                Debug.Log("collides");
+                veloEnemyAI = collision.gameObject.GetComponent<VeloEnemyAI>();
+                veloEnemyAI.health -= dmg;
             }
         }
         
