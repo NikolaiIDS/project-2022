@@ -299,10 +299,10 @@ GameObject:
   - component: {fileID: 6279190561750202754}
   - component: {fileID: 4975033988098307215}
   - component: {fileID: 169112328983593227}
-  - component: {fileID: 2959812707961035063}
+  - component: {fileID: 4303246139940082362}
   m_Layer: 3
   m_Name: Centre
-  m_TagString: SpawnPoint
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -350,7 +350,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2959812707961035063
+--- !u!114 &4303246139940082362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -359,10 +359,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2406337742246367918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d255723aaf6bc7741a2ec592718362a9, type: 3}
+  m_Script: {fileID: 11500000, guid: fc71fe0038a071d448f06ed3ff13da2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openingDirection: 0
 --- !u!1 &4126469658210978994
 GameObject:
   m_ObjectHideFlags: 0
