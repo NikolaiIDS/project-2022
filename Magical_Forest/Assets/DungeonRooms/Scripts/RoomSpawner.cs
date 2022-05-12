@@ -14,53 +14,49 @@ public class RoomSpawner : MonoBehaviour
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        for (int i = 0; i < 1; i++)
-        {
-Spawn();
-        }
-        
+        Invoke("Spawn", 1.9f);
+
     }
 
-   void Spawn()
+    void Spawn()
     {
-        
-            if (spawned == false)
+
+        if (spawned == false)
+        {
+            if (openingDirection == 1)
             {
-                if (openingDirection == 1)
-                {
-
-                    rand = Random.Range(0, templates.bottomRooms.Length);
-
-                    Instantiate(templates.bottomRooms[rand], transform.position, templates.bottomRooms[rand].transform.rotation);
-                }
-                else if (openingDirection == 2)
-                {
-                    // Need to spawn a room with a TOP door.
-                    rand =
-                    Random.Range(0, templates.topRooms.Length);
-                    Instantiate(templates.topRooms[rand], transform.position, templates.topRooms[rand].transform.rotation);
-                }
-                else if (openingDirection == 3)
-                {
-                    // Need to spawn a room with a LEFT door.
-                    rand = Random.Range(0, templates.leftRooms.Length);
-                    Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
-                }
-                else if (openingDirection == 4)
-                {
-                    //Need to spawn a room with a RIGHT door.
-                    rand = Random.Range(0, templates.rightRooms.Length);
-                    Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
-                }
-                spawned = true;
+                rand = Random.Range(0, templates.bottomRooms.Length);
+                Instantiate(templates.bottomRooms[rand], transform.position, templates.bottomRooms[rand].transform.rotation);
             }
+            else if (openingDirection == 2)
+            {
+                // Need to spawn a room with a TOP door.
 
-        
+                rand = Random.Range(0, templates.topRooms.Length);
+                Instantiate(templates.topRooms[rand], transform.position, templates.topRooms[rand].transform.rotation);
+            }
+            else if (openingDirection == 3)
+            {
+                // Need to spawn a room with a LEFT door.
+                rand = Random.Range(0, templates.leftRooms.Length);
+                Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
+            }
+            else if (openingDirection == 4)
+            {
+                //Need to spawn a room with a RIGHT door.
+                rand = Random.Range(0, templates.rightRooms.Length);
+                Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
+            }
+            spawned = true;
+        }
+
+
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("SpawnPoint")&& other.GetComponent<RoomSpawner>().spawned==true)
+        if (other.CompareTag("SpawnPoint") && other.gameObject.GetComponent<RoomSpawner>().spawned == true)
         {
+            Debug.Log("pepe");
             Destroy(gameObject);
         }
     }
