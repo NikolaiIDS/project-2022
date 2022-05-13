@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 9124862721898267504}
   - component: {fileID: 6521577594950430007}
   m_Layer: 3
-  m_Name: left (1)
-  m_TagString: SpawnPoint
+  m_Name: centre
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d255723aaf6bc7741a2ec592718362a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openingDirection: 4
+  openingDirection: 0
 --- !u!1 &1277468135828002692
 GameObject:
   m_ObjectHideFlags: 0

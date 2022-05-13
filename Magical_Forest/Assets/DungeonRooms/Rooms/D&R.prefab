@@ -88,8 +88,8 @@ GameObject:
   - component: {fileID: 2989956597652613318}
   - component: {fileID: 6948809239224715341}
   m_Layer: 3
-  m_Name: right (1)
-  m_TagString: SpawnPoint
+  m_Name: centre
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

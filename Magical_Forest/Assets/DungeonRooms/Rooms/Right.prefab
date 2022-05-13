@@ -2666,8 +2666,8 @@ GameObject:
   - component: {fileID: 5957623357882536239}
   - component: {fileID: 959527206483095629}
   m_Layer: 0
-  m_Name: SpawnPoint (4)
-  m_TagString: SpawnPoint
+  m_Name: centre
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
