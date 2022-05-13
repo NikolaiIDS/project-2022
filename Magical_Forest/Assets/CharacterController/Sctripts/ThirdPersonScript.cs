@@ -104,6 +104,9 @@ public class ThirdPersonScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerData data = SaveSystem.LoadPlayer();
+        health = data.health;
+        coins = data.coins;
 
         Physics.IgnoreLayerCollision(10, 12);
         Physics.IgnoreLayerCollision(10, 10);
@@ -111,13 +114,10 @@ public class ThirdPersonScript : MonoBehaviour
         Physics.IgnoreLayerCollision(7, 12);
         Physics.IgnoreLayerCollision(7, 10);
         Physics.IgnoreLayerCollision(7, 14);
-        //Physics.IgnoreLayerCollision(13, 14);
 
 
-        //enemyAI = GameObject.Find("Emeny").GetComponent<EnemyAI>();
+
         anims = GetComponent<AnimationStateController>();
-        //cinemachine = GameObject.Find("CM1");
-        //cmAimed = GameObject.Find("CM2");
     }
 
     // Update is called once per frame

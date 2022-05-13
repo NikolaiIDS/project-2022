@@ -10,32 +10,39 @@ public class SubtitleScript : MonoBehaviour
     public GameObject _sub;
     public GameObject[] subtitles = new GameObject[3];
     public int current = 0;
-
+    public NPCScript npc;
+    public bool a = false;
     // Start is called before the first frame update
-
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) && current < subtitles.Length - 2)
+        if (npc.subs && !a)
         {
-            subtitles[current].SetActive(false);
-            current++;
-            subtitles[current].SetActive(true);
+            a = true;
+            StartCoroutine(FiveSeconds());
         }
-        else if (Input.GetKeyDown(KeyCode.O) && current != 0 && current != subtitles.Length - 1)
-        {
-            subtitles[current].SetActive(false);
-            current--;
-            subtitles[current].SetActive(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && current == subtitles.Length - 2)
-        {
-            subtitles[current].SetActive(false);
-            current++;
-            subtitles[current].SetActive(true);
-        }
-        if (pauseMenu.activeSelf || weaponMenu.activeSelf) _sub.SetActive(false);
-        else if (!pauseMenu.activeSelf || !weaponMenu.activeSelf) _sub.SetActive(true);
 
+    }
+    // Update is called once per frame
+    IEnumerator FiveSeconds()
+    {
+        subtitles[current].SetActive(true);
+        yield return new WaitForSeconds(5);
+        subtitles[current].SetActive(false);
+        current++;
+        subtitles[current].SetActive(true);
+        yield return new WaitForSeconds(10);
+        subtitles[current].SetActive(false);
+        current++;
+        subtitles[current].SetActive(true);
+        yield return new WaitForSeconds(12);
+        subtitles[current].SetActive(false);
+        current++;
+        subtitles[current].SetActive(true);
+        yield return new WaitForSeconds(10);
+        subtitles[current].SetActive(false);
+        current++;
+        subtitles[current].SetActive(true);
+        yield return new WaitForSeconds(10);
+        subtitles[current].SetActive(false);
     }
 }

@@ -5,8 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class nextScene : MonoBehaviour
 {
+    public PuzzleScript ps;
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("Dungeon 1");
+        if (other.CompareTag("Player") && ps.correct == true)
+        {
+            SceneManager.LoadScene("Dungeon 1");
+        }
+        
     }
 }

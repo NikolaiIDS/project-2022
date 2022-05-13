@@ -58,14 +58,8 @@ public class PuzzleScript : MonoBehaviour
         else
         {
             enter = false;
-            correct = false;
         }
-
-
-        if (correct)
-        {
-
-        }
+        
         a++;
     }
 

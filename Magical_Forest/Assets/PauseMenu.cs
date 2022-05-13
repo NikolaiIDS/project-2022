@@ -29,6 +29,8 @@ public class PauseMenu : MonoBehaviour
     bool holding3;
     bool holding4;
     public GameObject puzzleUI;
+
+    public ThirdPersonScript tps;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -228,6 +230,8 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+
+        SaveSystem.SavePlayer(tps);
         SceneManager.LoadScene("SimpleNaturePack_Demo");
     }
 

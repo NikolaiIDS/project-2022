@@ -32,6 +32,8 @@ public class NPCScript : MonoBehaviour
     [SerializeField]
     private NavMeshAgent agent;
 
+    public bool subs = false;
+
     void Start()
     {
         player = GameObject.Find("Character").GetComponent<ThirdPersonScript>();
@@ -71,6 +73,7 @@ public class NPCScript : MonoBehaviour
 
             if (isAngered)
             {
+                subs = true;
                 transform.LookAt(targetLookNoY);
                 agent.isStopped = true;
                 walk = false;
