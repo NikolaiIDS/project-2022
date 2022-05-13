@@ -200,16 +200,16 @@ public class AnimationStateController : MonoBehaviour
         }
 
 
-        Distance = Vector3.Distance(lookAtEnemy.transform.position, this.transform.position);
+        /*//Distance = Vector3.Distance(lookAtEnemy.transform.position, this.transform.position);
         if (Distance <= 70)
         {
             animator.SetLayerWeight(4, 1f);
-            Neck.transform.LookAt(lookAtEnemy.transform.position);
+            //Neck.transform.LookAt(lookAtEnemy.transform.position);
         }
         else
         {
             animator.SetLayerWeight(4, 0f);
-        }
+        }*/
 
 
 

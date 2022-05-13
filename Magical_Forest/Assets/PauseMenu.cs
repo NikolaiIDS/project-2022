@@ -28,6 +28,7 @@ public class PauseMenu : MonoBehaviour
     bool holding2;
     bool holding3;
     bool holding4;
+    public GameObject puzzleUI;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -58,11 +59,21 @@ public class PauseMenu : MonoBehaviour
     }
     public void Resume()
     {
-        Cursor.visible = false;
+        if (puzzleUI.activeSelf)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
         menuUI.SetActive(false);
         Time.timeScale = 1f;
         Paused = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        
     }
     private void Pause()
     {
